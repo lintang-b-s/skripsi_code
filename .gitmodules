@@ -1,0 +1,19 @@
+[submodule "Navigatorx"]
+	path = Navigatorx
+	url = https://github.com/lintang-b-s/Navigatorx
+    branch = main
+[submodule "graphhopper"]
+	path = graphhopper
+	url = https://github.com/graphhopper/graphhopper
+    branch = master
+[submodule "osrm-backend"]
+	path = osrm-backend
+	url = https://github.com/Project-OSRM/osrm-backend
+    branch = master
+[submodule "valhalla"]
+	path = valhalla
+	url = git@github.com:valhalla/valhalla.git
+    branch = master
+
+
+	

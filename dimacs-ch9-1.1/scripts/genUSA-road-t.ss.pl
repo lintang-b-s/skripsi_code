@@ -22,7 +22,7 @@
 
 # param setup:
 
-$MINNSRC = 10;      # num sources for the largest graph
+$MINNSRC = 50;      # num sources for the largest graph
 $SEED    = 971;     # seed of pseudo-random generator
 
 $SRCGEN  = "../gens/utils/genSources.pl";
@@ -75,22 +75,22 @@ sub DOGEN {
 }
 
 # get size of the largest instance
-$largestfilename = sprintf $FORMAT, "CTR";
+$largestfilename = sprintf $FORMAT, "CAL";
 &GET_GRAPH_NM("$largestfilename.gr");
 $maxn = $n;
 
 #create instances
-&DOGEN("NY");
-&DOGEN("BAY");
-&DOGEN("COL");
-&DOGEN("FLA");
-&DOGEN("NW");
-&DOGEN("NE");
+# &DOGEN("NY");
+# &DOGEN("BAY");
+# &DOGEN("COL");
+# &DOGEN("FLA");
+# &DOGEN("NW");
+# &DOGEN("NE");
 &DOGEN("CAL");
-&DOGEN("LKS");
+# &DOGEN("LKS");
 &DOGEN("E");
 &DOGEN("W");
-&DOGEN("CTR");
+# &DOGEN("CTR");
 
 
 # ============================================================================

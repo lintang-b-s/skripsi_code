@@ -188,6 +188,9 @@ int main(int argc, char **argv)
 #endif
        
 #endif
+       if (((i + 1) % 500) == 0 || (i + 1) == nQ) {
+         fprintf(stderr, "c Progress: %d/%ld queries processed\n", i + 1, nQ);
+       }
      }
      tm = (timer() - tm);   // finish timing
 

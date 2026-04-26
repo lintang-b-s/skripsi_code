@@ -1,0 +1,11 @@
+*.xml
+*.osm.pbf
+*.osm
+*.csv
+*.gpx
+*.json
+*.xml.gz
+*.netccfg
+
+
+

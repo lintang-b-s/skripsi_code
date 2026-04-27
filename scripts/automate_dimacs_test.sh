@@ -26,6 +26,8 @@ done
 if [ -z "$MAP_NAME" ] || [ -z "$NUM_SOURCES" ]; then
     usage
 fi
+sh ./update_submodules.sh
+
 
 ROOT_DIR=$(pwd)
 DIMACS_DIR="$ROOT_DIR/dimacs-ch9-1.1"

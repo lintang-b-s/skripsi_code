@@ -20,4 +20,7 @@
 [submodule "navigatorx-crp-fe"]
 	path = navigatorx-crp-fe
 	url = git@github.com:lintang-b-s/navigatorx-crp-fe.git
+	branch = main
+
+
 

@@ -4,5 +4,10 @@
 *.chk
 *.ss
 *.o
+Navigatorx/dimacs_solver
+
+
+.gomodcache/
+Navigatorx/dimacs_solver
 
 

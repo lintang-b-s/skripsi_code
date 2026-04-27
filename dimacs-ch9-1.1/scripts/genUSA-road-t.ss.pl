@@ -22,7 +22,7 @@
 
 # param setup:
 
-$MINNSRC = 50;      # num sources for the largest graph
+$MINNSRC = $ENV{'MINNSRC'} || 50;      # num sources for the largest graph
 $SEED    = 971;     # seed of pseudo-random generator
 
 $SRCGEN  = "../gens/utils/genSources.pl";
@@ -74,23 +74,28 @@ sub DOGEN {
     system "perl $SRCGEN $prefix.gr $prefix.ss $nsrc $SEED";
 }
 
-# get size of the largest instance
-$largestfilename = sprintf $FORMAT, "CAL";
+# get size of the current instance (used for scaling or as default)
+$target_map = $ENV{'MAP'} || "CAL";
+$largestfilename = sprintf $FORMAT, $target_map;
 &GET_GRAPH_NM("$largestfilename.gr");
 $maxn = $n;
 
 #create instances
-# &DOGEN("NY");
-# &DOGEN("BAY");
-# &DOGEN("COL");
-# &DOGEN("FLA");
-# &DOGEN("NW");
-# &DOGEN("NE");
-&DOGEN("CAL");
-# &DOGEN("LKS");
-&DOGEN("E");
-&DOGEN("W");
-# &DOGEN("CTR");
+if ($ENV{'MAP'}) {
+    &DOGEN($ENV{'MAP'});
+} else {
+    # &DOGEN("NY");
+    # &DOGEN("BAY");
+    # &DOGEN("COL");
+    # &DOGEN("FLA");
+    # &DOGEN("NW");
+    # &DOGEN("NE");
+    &DOGEN($target_map);
+    # &DOGEN("LKS");
+    # &DOGEN("E");
+    # &DOGEN("W");
+    # &DOGEN("CTR");
+}
 
 
 # ============================================================================

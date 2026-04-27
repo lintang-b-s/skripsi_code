@@ -32,7 +32,7 @@ done
 
 # Calculate period: p = (end - begin) / n
 PERIOD=$(python3 -c "print($TRIP_DURATION / $NUM_VEHICLES)")
-i
+
 # Setup conditional flags
 INTERNAL_LINKS_FLAG=""
 if [ "$USE_INTERNAL_LINKS" = "false" ]; then

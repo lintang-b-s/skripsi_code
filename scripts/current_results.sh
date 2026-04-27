@@ -41,7 +41,7 @@ for MAP_NAME in "${MAP_NAMES[@]}"; do
     # Use relative paths to stay under the 100-character buffer limit in sqC.exe
     REL_GR_FILE="../../inputs/USA-road-t/USA-road-t.$MAP_NAME.gr"
     REL_SS_FILE="../../../results/USA-road-t.$MAP_NAME.ss"
-    
+
     cd "$SOLVER_DIR"
     rm -f "$RES_FILE"
     
@@ -66,7 +66,7 @@ go test -run TestCRPQuerySimpleGraph -v -timeout=0  -count=1
 
 echo "Running other shortest path correctness test by comparing the result (with no turn costs) with the result of plain dijkstra algorithm"
 cd "$ROOT_DIR"
-cd ./Navigatorx/eval/gen_rand_queries_coords && go run main.go
+cd ./Navigatorx/eval/crp_alt/gen_rand_queries_coords && go run main.go
 cd ../stress_tests &&  go run main.go
 
 cd "$ROOT_DIR"

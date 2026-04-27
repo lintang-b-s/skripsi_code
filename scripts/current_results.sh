@@ -7,11 +7,6 @@ sh ./update_submodules.sh
 pip install gdown
 # hasil saat ini untuk map CAL (California https://www.diag.uniroma1.it/~challenge9/download.shtml) 
 # untuk p2p query (implementasi Cusotmizable Route Planning (CRP) Query pada Navigatorx) dari 50 sources ke all other vertices 
-gdown https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR --output ./results 
-gdown https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz --output ./results 
-
-
-
 # list of map names to check (manual entry)
 MAP_NAMES=("CAL")
 
@@ -20,6 +15,20 @@ RESULTS_DIR="$ROOT_DIR/results"
 DIMACS_DIR="$ROOT_DIR/dimacs-ch9-1.1"
 INPUT_DIR="$DIMACS_DIR/inputs/USA-road-t"
 SOLVER_DIR="$DIMACS_DIR/solvers/mlb-dimacs"
+
+
+RESULTS_DIR="$ROOT_DIR/results"
+
+if [ ! -d "$RESULTS_DIR" ]; then
+    echo "Creating directory $RESULTS_DIR with 755 permissions..."
+    mkdir -m 755 -p "$RESULTS_DIR"
+fi
+
+gdown https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR --output "$RESULTS_DIR"
+gdown https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz --output "$RESULTS_DIR"
+
+
+
 
 for MAP_NAME in "${MAP_NAMES[@]}"; do
     GR_FILE="$INPUT_DIR/USA-road-t.$MAP_NAME.gr"

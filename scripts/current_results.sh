@@ -14,10 +14,11 @@ ROOT_DIR=$(pwd)
 RESULTS_DIR="$ROOT_DIR/results"
 DIMACS_DIR="$ROOT_DIR/dimacs-ch9-1.1"
 INPUT_DIR="$DIMACS_DIR/inputs/USA-road-t"
+COORD_DIR="$DIMACS_DIR/inputs/USA-road-d"
 SOLVER_DIR="$DIMACS_DIR/solvers/mlb-dimacs"
 
-
-RESULTS_DIR="$ROOT_DIR/results"
+mkdir -p "$INPUT_DIR"
+mkdir -p "$COORD_DIR"
 
 if [ ! -d "$RESULTS_DIR" ]; then
     echo "Creating directory $RESULTS_DIR with 755 permissions..."
@@ -27,11 +28,21 @@ fi
 gdown https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR --output "$RESULTS_DIR"
 gdown https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz --output "$RESULTS_DIR"
 
-
-
-
 for MAP_NAME in "${MAP_NAMES[@]}"; do
     GR_FILE="$INPUT_DIR/USA-road-t.$MAP_NAME.gr"
+    CO_FILE="$COORD_DIR/USA-road-d.$MAP_NAME.co"
+
+    if [ ! -f "$GR_FILE" ]; then
+        echo "Graph file $GR_FILE not found. Downloading..."
+        wget -N "https://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR"
+        gunzip "$INPUT_DIR/USA-road-t.$MAP_NAME.gr.gz"
+    fi
+
+    if [ ! -f "$CO_FILE" ]; then
+        echo "Coordinate file $CO_FILE not found. Downloading..."
+        wget -N "https://www.diag.uniroma1.it/~challenge9/data/USA-road-d/USA-road-d.$MAP_NAME.co.gz" -P "$COORD_DIR"
+        gunzip "$COORD_DIR/USA-road-d.$MAP_NAME.co.gz"
+    fi
     SS_FILE="$RESULTS_DIR/USA-road-t.$MAP_NAME.ss"
     CHK_FILE="$RESULTS_DIR/DIMACS_9_USA_$MAP_NAME.ss.chk"
     RES_FILE="my_results.ss.res"

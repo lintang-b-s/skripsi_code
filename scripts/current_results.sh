@@ -58,7 +58,6 @@ done
 echo "Dimacs 9th shortest path correctness test completed...."
 
 echo "Running other shortest path correctness test using programming contest problems......"
-cd "./Navigatorx"
 
 cd "./Navigatorx/tests/shortestpath_crp_alt" && go test -run TestCRPQueryDelftDistance -v -timeout=0 -count=1
 go test -run TestCRPQueryGalaxyQuest -v -timeout=0 -count=1

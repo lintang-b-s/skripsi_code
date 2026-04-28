@@ -13,7 +13,6 @@ sh scripts/automate_dimacs_test.sh -m <MAP_NAME> -n <NUMBER_OF_SOURCES>
 ```
 
 #### Example
-
 map CAL (california) ~1.8jt vertices.
 ini cek correctness dari implementasi Customizable Route Planning [1] Query Phase yang ada di Navigatorx.
 bandingin output dari sssp solver nya DIMACS 9th (1 source ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe

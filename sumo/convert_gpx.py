@@ -2,6 +2,7 @@
 
 import os
 import sys
+import argparse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from pyproj import Transformer
@@ -11,11 +12,9 @@ def get_net_info(net_file):
     net_offset = [0, 0]
     proj_params = ""
     
-    # We only need the first few lines to find the <location> tag
     with open(net_file, 'r') as f:
         for line in f:
             if '<location' in line:
-                # Simple parsing for offset and proj
                 if 'netOffset="' in line:
                     offset_str = line.split('netOffset="')[1].split('"')[0]
                     net_offset = [float(x) for x in offset_str.split(',')]
@@ -24,8 +23,11 @@ def get_net_info(net_file):
                 break
     return net_offset, proj_params
 
-def convert_gpx_and_format_time(input_gpx, output_gpx, net_file="map.net.xml"):
-    # 1. Get exact projection and offset from the network file
+def create_gpx_wrapper(namespace):
+    gpx = ET.Element('gpx', version="1.0", xmlns=namespace)
+    return gpx
+
+def convert_gpx_and_format_time(input_gpx, output_gpx, net_file="map.net.xml", split_dir=None):
     if not os.path.exists(net_file):
         print(f"Error: {net_file} not found. Cannot determine projection.")
         sys.exit(1)
@@ -36,72 +38,78 @@ def convert_gpx_and_format_time(input_gpx, output_gpx, net_file="map.net.xml"):
     print(f"Using Network Projection: {proj_params}")
     print(f"Using Network Offset: {OFFSET_X}, {OFFSET_Y}")
     
-    # Start time: 2026-04-24 08:00:00
     start_time = datetime(2026, 4, 24, 8, 0, 0)
-    
-    # Initialize transformer from UTM to WGS84
     transformer = Transformer.from_crs(proj_params, "EPSG:4326", always_xy=True)
     
-    print(f"Parsing GPX: {input_gpx} (this may take a while for large files...)")
+    print(f"Parsing GPX: {input_gpx}...")
     tree = ET.parse(input_gpx)
     root = tree.getroot()
     
-    # GPX namespaces
-    ns = {'gpx': 'http://www.topografix.com/GPX/1/0'}
     if '}' in root.tag:
         namespace = root.tag.split('}')[0].strip('{')
         ns = {'gpx': namespace}
     else:
+        namespace = ""
         ns = {'gpx': ''}
 
+    if split_dir and not os.path.exists(split_dir):
+        os.makedirs(split_dir)
+
     count = 0
-    # Find all track points
-    for trkpt in root.findall('.//gpx:trkpt', ns):
-        try:
-            # Coordinate Conversion (SUMO internal -> UTM -> WGS84)
-            x_sumo = float(trkpt.get('lon'))
-            y_sumo = float(trkpt.get('lat'))
-            
-            # Formula from SUMO docs: original = internal - netOffset
-            x_utm = x_sumo - OFFSET_X
-            y_utm = y_sumo - OFFSET_Y
-            
-            lon, lat = transformer.transform(x_utm, y_utm)
-            
-            # Update attributes
-            trkpt.set('lon', f"{lon:.10f}")
-            trkpt.set('lat', f"{lat:.10f}")
-            
-            # Time Conversion
-            time_elem = trkpt.find('gpx:time', ns)
-            if time_elem is not None:
-                sim_time = float(time_elem.text)
-                point_time = start_time + timedelta(seconds=sim_time)
-                time_elem.text = point_time.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]
-            
-            count += 1
-            if count % 100000 == 0:
-                print(f"Processed {count} points...")
-            
-        except (TypeError, ValueError):
-            continue
+    tracks = root.findall('.//gpx:trk', ns)
+    
+    for trk in tracks:
+        name_elem = trk.find('gpx:name', ns)
+        veh_id = name_elem.text if name_elem is not None else "unknown"
+        
+        for trkpt in trk.findall('.//gpx:trkpt', ns):
+            try:
+                x_sumo = float(trkpt.get('lon'))
+                y_sumo = float(trkpt.get('lat'))
+                
+                x_utm = x_sumo - OFFSET_X
+                y_utm = y_sumo - OFFSET_Y
+                
+                lon, lat = transformer.transform(x_utm, y_utm)
+                
+                trkpt.set('lon', f"{lon:.10f}")
+                trkpt.set('lat', f"{lat:.10f}")
+                
+                time_elem = trkpt.find('gpx:time', ns)
+                if time_elem is not None:
+                    sim_time = float(time_elem.text)
+                    point_time = start_time + timedelta(seconds=sim_time)
+                    time_elem.text = point_time.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]
+                
+                count += 1
+            except (TypeError, ValueError):
+                continue
+        
+        if split_dir:
+            # Create a separate GPX file for this vehicle
+            single_gpx = create_gpx_wrapper(namespace)
+            single_gpx.append(trk)
+            single_tree = ET.ElementTree(single_gpx)
+            single_output = os.path.join(split_dir, f"{veh_id}.gpx")
+            single_tree.write(single_output, encoding='UTF-8', xml_declaration=True)
 
     print(f"Successfully converted {count} points.")
-    print(f"Saving to: {output_gpx}")
+    print(f"Saving combined file to: {output_gpx}")
     tree.write(output_gpx, encoding='UTF-8', xml_declaration=True)
+    if split_dir:
+        print(f"Saved {len(tracks)} individual traces to: {split_dir}")
 
 if __name__ == "__main__":
-    # Default filenames
-    in_file = "noisy_data.gpx"
-    out_file = "noisy_data_wgs84.gpx"
+    parser = argparse.ArgumentParser(description="Convert SUMO GPX to WGS84 and optionally split by vehicle.")
+    parser.add_argument("input", help="Input GPX file")
+    parser.add_argument("output", help="Output combined GPX file")
+    parser.add_argument("--net", default="map.net.xml", help="SUMO network file (default: map.net.xml)")
+    parser.add_argument("--split-dir", help="Directory to save individual vehicle traces")
     
-    if len(sys.argv) > 1:
-        in_file = sys.argv[1]
-    if len(sys.argv) > 2:
-        out_file = sys.argv[2]
-        
-    if not os.path.exists(in_file):
-        print(f"Error: {in_file} not found.")
+    args = parser.parse_args()
+    
+    if not os.path.exists(args.input):
+        print(f"Error: {args.input} not found.")
         sys.exit(1)
         
-    convert_gpx_and_format_time(in_file, out_file)
+    convert_gpx_and_format_time(args.input, args.output, args.net, args.split_dir)

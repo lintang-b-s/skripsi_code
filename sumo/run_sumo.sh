@@ -11,7 +11,7 @@
 OSM_FILE="yogyakarta.osm"
 NOISE_METER=3.5
 DELTA_T=1.0
-NUM_VEHICLES=100
+NUM_VEHICLES=80
 TRIP_DURATION=3600
 USE_INTERNAL_LINKS="true"
 CAN_REROUTE="true"
@@ -47,6 +47,27 @@ fi
 # Create tags for filenames (replacing dots with underscores)
 NOISE_TAG=${NOISE_METER//./_}
 DELTA_TAG=${DELTA_T//./_}
+OSM_TAG=$(basename "$OSM_FILE")
+OSM_TAG=${OSM_TAG%.*} # remove extension
+OSM_TAG=${OSM_TAG//./_}
+
+REROUTE_TAG="reroute"
+if [ "$CAN_REROUTE" = "false" ]; then
+    REROUTE_TAG="noreroute"
+fi
+
+# Final Output Base Filename
+# Format: noisy_data_<osm>_<vehicles>v_<duration>s_<delta_t>dt_<noise>n_<reroute>
+OUTPUT_BASE="noisy_data_${OSM_TAG}_${NUM_VEHICLES}v_${TRIP_DURATION}s_${DELTA_TAG}dt_${NOISE_TAG}n_${REROUTE_TAG}"
+
+# Create Output Directory
+mkdir -p "$OUTPUT_BASE"
+
+CSV_OUT="${OUTPUT_BASE}/${OUTPUT_BASE}.csv"
+GPX_OUT="${OUTPUT_BASE}/${OUTPUT_BASE}.gpx"
+CSV_WGS84="${OUTPUT_BASE}/${OUTPUT_BASE}_wgs84.csv"
+GPX_WGS84="${OUTPUT_BASE}/${OUTPUT_BASE}_wgs84.gpx"
+SPLIT_DIR="${OUTPUT_BASE}/traces"
 
 if [ ! -f "$OSM_FILE" ]; then
     echo "Error: File '$OSM_FILE' not found."
@@ -55,10 +76,10 @@ fi
 
 # 1. Boost Library Workaround (Permanent fix: yay -S sumo --rebuild)
 mkdir -p /tmp/sumo_libs
-ln -sf /usr/lib/libboost_process.so.1.90.0 /tmp/sumo_libs/libboost_process.so.1.89.0
-ln -sf /usr/lib/libboost_filesystem.so.1.90.0 /tmp/sumo_libs/libboost_filesystem.so.1.89.0
-ln -sf /usr/lib/libboost_context.so.1.90.0 /tmp/sumo_libs/libboost_context.so.1.89.0
-ln -sf /usr/lib/libboost_date_time.so.1.90.0 /tmp/sumo_libs/libboost_date_time.so.1.89.0
+ln -sf /usr/lib/libboost_process.so.1.91.0 /tmp/sumo_libs/libboost_process.so.1.89.0
+ln -sf /usr/lib/libboost_filesystem.so.1.91.0 /tmp/sumo_libs/libboost_filesystem.so.1.89.0
+ln -sf /usr/lib/libboost_context.so.1.91.0 /tmp/sumo_libs/libboost_context.so.1.89.0
+ln -sf /usr/lib/libboost_date_time.so.1.91.0 /tmp/sumo_libs/libboost_date_time.so.1.89.0
 export LD_LIBRARY_PATH=/tmp/sumo_libs:$LD_LIBRARY_PATH
 
 # 2. Network Conversion (OSM -> SUMO NET)
@@ -100,6 +121,7 @@ duarouter -n map.net.xml \
     --xml-validation never
 
 # 5. Simulation (Running the scenario)
+rm -f perfect_trajectories.xml.gz
 echo "Running SUMO simulation with step-length $DELTA_T..."
 sumo -n map.net.xml \
     -r routes.rou.xml \
@@ -115,25 +137,27 @@ echo "Exporting noisy trajectories with gps-blur ${NOISE_METER}m and delta-t ${D
 python /usr/share/sumo/tools/traceExporter.py \
     --fcd-input perfect_trajectories.xml.gz \
     --gps-blur "$NOISE_METER" \
-    --gpsdat-output "noisy_data_${NOISE_TAG}_${DELTA_TAG}.csv" \
+    --gpsdat-output "$CSV_OUT" \
+    --gpx-output "$GPX_OUT" \
     --delta-t "$DELTA_T"
+
 
 echo "Full pipeline complete."
 echo "Ground Truth: perfect_trajectories.xml.gz"
-echo "Noisy GPSDAT (with speed): noisy_data_${NOISE_TAG}_${DELTA_TAG}.csv"
+echo "Noisy CSV (Cartesian): $CSV_OUT"
+echo "Noisy GPX (Cartesian): $GPX_OUT"
 
 
 echo "Converting CSV to WGS84..."
-python convert_csv.py "noisy_data_${NOISE_TAG}_${DELTA_TAG}.csv" "noisy_data_wgs84_${NOISE_TAG}_${DELTA_TAG}.csv"
+python convert_csv.py "$CSV_OUT" "$CSV_WGS84"
 
-echo "All conversions complete. Final WGS84 files:"
-echo " - noisy_data_wgs84_${NOISE_TAG}_${DELTA_TAG}.csv"
+echo "Converting GPX to WGS84 (Combined and Individual)..."
+python convert_gpx.py "$GPX_OUT" "$GPX_WGS84" --split-dir "$SPLIT_DIR"
 
-
-
-
-
-
+echo "All conversions complete. Final WGS84 files are in: $OUTPUT_BASE/"
+echo " - Combined CSV: $CSV_WGS84"
+echo " - Combined GPX: $GPX_WGS84"
+echo " - Individual GPX: $SPLIT_DIR/"
 
 
 

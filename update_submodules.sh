@@ -4,7 +4,7 @@ set -e
 echo "Initializing and updating submodules..."
 git submodule update --init --recursive 
 echo "Pulling latest changes for submodules..."
-git submodule foreach 'git checkout $(git config --file $toplevel/.gitmodules --get submodule.$name.branch) && git pull origin $(git config --file $toplevel/.gitmodules --get submodule.$name.branch)'
+git submodule foreach 'git checkout $(git config --file $toplevel/.gitmodules --get submodule.$name.branch) && git pull origin $(git config --file $toplevel/.gitmodules --get submodule.$name.branch) && git lfs pull'
 echo "Submodule update complete."
 
 

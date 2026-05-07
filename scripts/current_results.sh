@@ -84,6 +84,8 @@ go test -run TestCRPQueryGalaxyQuest -v -timeout=0 -count=1
 go test -run TestCRPQueryShoppingMalls -v -timeout=0 -count=1
 go test -run TestShowroom -v -timeout=0 -count=1
 go test -run TestCRPQuerySimpleGraph -v -timeout=0 -count=1
+go test -run TestOSN2024KRLMALT  -v -timeout=0  -count=1
+
 
 echo "Running other shortest path correctness test by comparing the result (with no turn costs) with the result of plain dijkstra algorithm"
 cd "$ROOT_DIR"
@@ -102,7 +104,7 @@ go build -o ./bin/customizer ./cmd/customizer
 
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go
 
-go run ./eval/crp_alt/stress_tests/main.go
+cd eval/crp_alt && go run stress_tests/main.go && cd ../..
 
 cd "$ROOT_DIR"
 

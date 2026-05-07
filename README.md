@@ -42,7 +42,6 @@ prequisite: install golang: https://go.dev/doc/install
 sh ./scripts/current_results.sh
 ```
 
-
 ```
 c ---------------------------------------------------
 c SQ/SQP DIMACS Challenge version
@@ -358,7 +357,6 @@ ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt    2448.494
 completed shortest path correctness test......
 ```
 
-
 ##### Evaluasi Alternative Routes in Road Network [[2]](#ref2)
 
 Evaluasi implementasi Algoritma untuk mencari Alternative Routes in Road Network [[2]](#ref2) yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/alternative_routes.go).
@@ -373,6 +371,7 @@ runtime: 0.547900 ms
 
 script:
 prequisite: install golang: https://go.dev/doc/install
+
 ```
 sh ./scripts/alternative_routes_results.sh
 ```
@@ -388,6 +387,7 @@ sh ./scripts/load_tests_runtime.sh
 ```
 
 ##### Laptop Spec
+
 ```
 Vendor ID:                   AuthenticAMD
   Model name:                AMD Ryzen 5 7540U w/ Radeon(TM) 740M Graphics
@@ -424,10 +424,9 @@ avg number of overlay vertices scanned: 410
 
 [![k6 Load Test Report](docs/images/k6_crp_query_result.png)](docs/images/k6_crp_query_result.png)
 
-#####  Alternative Routes in Road Network Load Test
+##### Alternative Routes in Road Network Load Test
 
 [![k6 Load Test Report](docs/images/k6_alternative_routes_result.png)](docs/images/k6_alternative_routes_result.png)
-
 
 #### Demo Software
 
@@ -437,6 +436,8 @@ online: https://navigatorx-crp-fe.vercel.app/
 
 ## Referensi & Acknowledgements
 
+### Referensi
+
 <a id="ref1"></a>1. Delling, D. et al. (2015) “Customizable Route Planning in Road
 Networks,” Transportation Science [Preprint]. Available at:
 https://doi.org/10.1287/trsc.2014.0579 .
@@ -444,3 +445,11 @@ https://doi.org/10.1287/trsc.2014.0579 .
 <a id="ref2"></a>2. Abraham, I. et al. (2010) “Alternative Routes in Road Networks,” in P. Festa (ed.)
 Experimental Algorithms. Berlin, Heidelberg: Springer, pp. 23–34. Available at:
 https://doi.org/10.1007/978-3-642-13193-6_3 .
+
+### Acknowledgements
+
+Penulis ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek open source dibawah ini. Kode pada project Navigatorx banyak diadaptasi dan terinspirasi dari proyek open source berikut:
+
+1. [CRP](https://github.com/michaelwegner/CRP)
+2. [OSRM Backend](https://github.com/Project-OSRM/osrm-backend)
+3. [GraphHopper](https://github.com/graphhopper/graphhopper)

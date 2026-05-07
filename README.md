@@ -453,3 +453,4 @@ Penulis ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek
 1. [CRP](https://github.com/michaelwegner/CRP)
 2. [OSRM Backend](https://github.com/Project-OSRM/osrm-backend)
 3. [GraphHopper](https://github.com/graphhopper/graphhopper)
+4. [Telenav](https://github.com/Telenav/open-source-spec)

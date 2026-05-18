@@ -90,17 +90,24 @@ go test -run TestOSN2024KRLMALT  -v -timeout=0  -count=1
 echo "Running other shortest path correctness test by comparing the result (with no turn costs) with the result of plain dijkstra algorithm"
 cd "$ROOT_DIR"
 
+
 echo "Preprocessing...."
 cd "$ROOT_DIR/Navigatorx"
 mkdir -p bin
-sh scripts/build_pgo.sh
+
 pip install gdown
+gdown https://drive.google.com/uc?id=1HBswl5-JkFXWh--AFLC2ElYC4Tbsj1i0   --output ./data
+gdown https://drive.google.com/uc?id=1pRmqUFgNc_p0lEKmfzLcn3IRhUW4Cm4c  --output ./data
+
+sh scripts/build_pgo.sh
+
 gdown https://drive.google.com/uc?id=1uBoFWUSRka9pqH2dVPKpcystxXmkkSgs --output ./data
 go build -o ./bin/preprocessor ./cmd/preprocessor
 ./bin/preprocessor
 
 go build -o ./bin/customizer ./cmd/customizer
 ./bin/customizer
+
 
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go
 
@@ -109,5 +116,6 @@ cd eval/crp_alt && go run stress_tests/main.go && cd ../..
 cd "$ROOT_DIR"
 
 echo "completed shortest path correctness test......."
+
 
 

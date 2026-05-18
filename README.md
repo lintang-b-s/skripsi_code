@@ -4,9 +4,9 @@
 
 ### Dimacs 9th Implementation Challenge: Shortest Path
 
-https://www.diag.uniroma1.it/~challenge9/
-map data: https://www.diag.uniroma1.it/~challenge9/download.shtml
-file format: https://www.diag.uniroma1.it/~challenge9/format.shtml#ss.chk
+https://www.diag.uniroma1.it/~challenge9/ \
+map data: https://www.diag.uniroma1.it/~challenge9/download.shtml \
+file format: https://www.diag.uniroma1.it/~challenge9/format.shtml#ss.chk \
 dimacs scripts untuk correctnes/performance test (sudah saya clone di ./dimacs-ch9-1.1): https://www.diag.uniroma1.it/~challenge9/code/ch9-1.1.tar.gz
 
 ```
@@ -15,10 +15,10 @@ sh scripts/automate_dimacs_test.sh -m <MAP_NAME> -n <NUMBER_OF_SOURCES>
 
 #### Example
 
-map CAL (california) ~1.8jt vertices.
-ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx.
-bandingin output dari sssp solver nya DIMACS 9th (1 source ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe
-dengan p2p CRP Query nya Navigatorx (~1.8 jt query) sekitar 10 menit
+map CAL (california) ~1.8jt vertices.\
+ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx.\
+bandingin output dari sssp solver nya DIMACS 9th (1 source ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe \
+dengan p2p CRP Query nya Navigatorx (~1.8 jt query) sekitar 10 menit \
 note that Customizable Ruote Planning (CRP) [[1]](#ref1) hanya mempercepat point-to-point (p2p) shortest path query....
 
 ```
@@ -29,9 +29,9 @@ sh scripts/automate_dimacs_test.sh -m CAL -n 1
 
 ##### Correctness Test dari Implementasi Customizable Route Planning (CRP) [[1]](#ref1)
 
-map CAL (california) ~1.8jt vertices.
-ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/multilevel_astar_landmarks.go).
-bandingin output dari sssp solver nya DIMACS 9th (dari 50 sources ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe .
+map CAL (california) ~1.8jt vertices. \
+ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/multilevel_astar_landmarks.go). \
+bandingin output dari sssp solver nya DIMACS 9th (dari 50 sources ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe . \
 dengan p2p CRP [[1]](#ref1) Query nya Navigatorx (~97 jt query) yang sudah saya jalankan.. ( https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR dan https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz )
 dan bandingin output test cases programming contest problems:
 
@@ -357,7 +357,7 @@ ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt    2448.494
 completed shortest path correctness test......
 ```
 
-##### Evaluasi Alternative Routes in Road Network [[2]](#ref2)
+## Evaluasi Alternative Routes in Road Network [[2]](#ref2)
 
 Evaluasi implementasi Algoritma untuk mencari Alternative Routes in Road Network [[2]](#ref2) yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/alternative_routes.go).
 
@@ -376,7 +376,7 @@ prequisite: install golang: https://go.dev/doc/install
 sh ./scripts/alternative_routes_results.sh
 ```
 
-#### Load Tests && runtime CRP Query [[1]](#ref1)
+## Load Tests && runtime CRP Query [[1]](#ref1)
 
 script:
 prequisite: install golang: https://go.dev/doc/install
@@ -386,7 +386,7 @@ install k6: https://grafana.com/docs/k6/latest/set-up/install-k6/
 sh ./scripts/load_tests_runtime.sh
 ```
 
-##### Laptop Spec
+### Laptop Spec
 
 ```
 Vendor ID:                   AuthenticAMD
@@ -407,7 +407,7 @@ Vendor ID:                   AuthenticAMD
 RAM 16GB
 ```
 
-##### Avg Runtime CRP Query
+### Avg Runtime CRP Query
 
 ```
 2026-05-07T16:54:07.241898894+07:00	info	done query 9000
@@ -420,19 +420,43 @@ avg path unpacking runtime: 0.085400 ms
 avg number of overlay vertices scanned: 410
 ```
 
-##### Fastest Path CRP Query Load Test
+### Fastest Path CRP Query Load Test
 
-[![k6 Load Test Report](docs/images/k6_crp_query_result.png)](docs/images/k6_crp_query_result.png)
+[![k6 Load Test Report navigatorx fastest](docs/images/k6_crp_query_result.png)](docs/images/k6_crp_query_result.png)
 
-##### Alternative Routes in Road Network Load Test
+### Alternative Routes in Road Network Load Test
 
-[![k6 Load Test Report](docs/images/k6_alternative_routes_result.png)](docs/images/k6_alternative_routes_result.png)
+[![k6 Load Test Report navigatorx alternatives](docs/images/k6_alternative_routes_result.png)](docs/images/k6_alternative_routes_result.png)
 
-#### Demo Software
+### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 
-online: https://navigatorx-crp-fe.vercel.app/
+Saya juga melakukan load test pada software Open Source Routing Machine (OSRM) v26.5.0 [[4]](#ref4) Multilevel-Dijkstra (MLD) pipeline (commit c3dc148). \
+alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1). \
 
-[![Navigatorx Demo](https://img.youtube.com/vi/MblDGyEF7fk/maxresdefault.jpg)](https://www.youtube.com/watch?v=MblDGyEF7fk)
+script:
+```
+sh scripts/load_tests_osrm.sh
+```
+
+#### OSRM v26.5.0 (commit c3dc148) computeRoutes with alternatives=false
+
+[![k6 Load Test Report osrm fastest](docs/images/k6_osrm_fastest.png)](docs/images/k6_osrm_fastest.png)
+
+#### OSRM v26.5.0  (commit c3dc148) computeRoutes with alternatives=true
+
+[![k6 Load Test Report osrm alternatives](docs/images/k6_osrm_alternative_routes.png)](docs/images/k6_osrm_alternative_routes.png)
+
+## Demo Software
+
+
+mobile app: https://github.com/lintang-b-s/navigatorx-rn
+
+[![Navigatorx Demo1](https://img.youtube.com/vi/z3GPaacAKAo/maxresdefault.jpg)](https://www.youtube.com/watch?v=z3GPaacAKAo)
+
+[![Navigatorx Demo2](https://img.youtube.com/vi/YKw3FaLH5Fc/maxresdefault.jpg)](https://www.youtube.com/watch?v=YKw3FaLH5Fc)
+
+frontend web online: https://navigatorx-crp-fe.vercel.app/  \
+[![Navigatorx Demo3](https://img.youtube.com/vi/MblDGyEF7fk/maxresdefault.jpg)](https://www.youtube.com/watch?v=MblDGyEF7fk)
 
 ## Referensi & Acknowledgements
 
@@ -445,6 +469,12 @@ https://doi.org/10.1287/trsc.2014.0579 .
 <a id="ref2"></a>2. Abraham, I. et al. (2010) “Alternative Routes in Road Networks,” in P. Festa (ed.)
 Experimental Algorithms. Berlin, Heidelberg: Springer, pp. 23–34. Available at:
 https://doi.org/10.1007/978-3-642-13193-6_3 .
+
+<a id="ref3"></a>3. Goldberg, A. and Harrelson, C. (2005) “Computing the shortest path: A search meets
+graph theory,” in. ACM-SIAM Symposium on Discrete Algorithms. Vancouver:
+ACM, pp. 156 - 165.
+
+<a id="ref4"></a>4. Luxen, D. and Vetter, C. (2011) ‘Real-time routing with OpenStreetMap data’, in Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems. New York, NY, USA: ACM (GIS ’11), pp. 513–516. Available at: https://doi.org/10.1145/2093973.2094062. code: https://github.com/Project-OSRM/osrm-backend.
 
 ### Acknowledgements
 

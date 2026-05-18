@@ -111,7 +111,7 @@ go build -o ./bin/customizer ./cmd/customizer
 
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go
 
-cd eval/crp_alt && go run stress_tests/main.go && cd ../..
+cd tests/query && go test -run TestCRPQueryStressNoTurnCostTest  -v -timeout=0  -count=1
 
 cd "$ROOT_DIR"
 

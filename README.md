@@ -363,10 +363,10 @@ Evaluasi implementasi Algoritma untuk mencari Alternative Routes in Road Network
 
 ```
 processed 10000 queries
-success rate: 0.905200
-stretch: 1.104708
-diversity: 0.341447
-runtime: 0.547900 ms
+success rate: 0.947100
+stretch: 1.104162
+diversity: 0.386089
+runtime: 1.028000 ms
 ```
 
 script:
@@ -384,6 +384,8 @@ install k6: https://grafana.com/docs/k6/latest/set-up/install-k6/
 
 ```
 sh ./scripts/load_tests_runtime.sh
+
+# buka http://localhost:5665/ui saat k6 load test sudah jalan
 ```
 
 ### Laptop Spec
@@ -431,23 +433,31 @@ avg number of overlay vertices scanned: 410
 ### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 
 Saya juga melakukan load test pada software Open Source Routing Machine (OSRM) v26.5.0 [[4]](#ref4) Multilevel-Dijkstra (MLD) pipeline (commit c3dc148). \
-alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1). \
+alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1).
 
 script:
+
 ```
 sh scripts/load_tests_osrm.sh
+
+# buka http://localhost:5665/ui saat k6 load test sudah jalan
 ```
 
-#### OSRM v26.5.0 (commit c3dc148) computeRoutes with alternatives=false
+#### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=false
 
 [![k6 Load Test Report osrm fastest](docs/images/k6_osrm_fastest.png)](docs/images/k6_osrm_fastest.png)
 
-#### OSRM v26.5.0  (commit c3dc148) computeRoutes with alternatives=true
+#### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=true
 
 [![k6 Load Test Report osrm alternatives](docs/images/k6_osrm_alternative_routes.png)](docs/images/k6_osrm_alternative_routes.png)
 
-## Demo Software
+#### OSRM v26.5.0 (commmit c3dc148) Alternative Routes Success rate
+```
+processed 5000 queries
+success rate: 0.575600
+```
 
+## Demo Software
 
 mobile app: https://github.com/lintang-b-s/navigatorx-rn
 
@@ -455,7 +465,7 @@ mobile app: https://github.com/lintang-b-s/navigatorx-rn
 
 [![Navigatorx Demo2](https://img.youtube.com/vi/YKw3FaLH5Fc/maxresdefault.jpg)](https://www.youtube.com/watch?v=YKw3FaLH5Fc)
 
-frontend web online: https://navigatorx-crp-fe.vercel.app/  \
+frontend web online: https://navigatorx-crp-fe.vercel.app/ \
 [![Navigatorx Demo3](https://img.youtube.com/vi/MblDGyEF7fk/maxresdefault.jpg)](https://www.youtube.com/watch?v=MblDGyEF7fk)
 
 ## Referensi & Acknowledgements

@@ -25,7 +25,18 @@ gdown https://drive.google.com/uc?id=1uBoFWUSRka9pqH2dVPKpcystxXmkkSgs --output 
 
 go run eval/crp_alt/gen_rand_queries_coords/main.go
 
-K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_sp.js
-K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_alternatives.js
+echo "------- OSRM Fastest Path Load Tests-------"
+
+K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_sp.js & 
+
+sleep 320
+
+echo "------- Alternative Routes Load Tests-------"
+K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_alternatives.js &
+
+
+sleep 320
+echo "------- OSRM Alternative Routes Load Success Rate-------"
+go run  eval/osrm/alternative_routes/main.go
 
 

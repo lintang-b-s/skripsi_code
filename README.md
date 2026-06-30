@@ -433,7 +433,7 @@ avg number of overlay vertices scanned: 410
 ### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 
 Saya juga melakukan load test pada software Open Source Routing Machine (OSRM) v26.5.0 [[4]](#ref4) Multilevel-Dijkstra (MLD) pipeline (commit c3dc148). \
-alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1).
+alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1). Seperti yang dikatakan oleh lead developer dari [OSRM](https://github.com/Project-OSRM/osrm-backend) sendiri, Dennis Luxen, pada komen akun Hacker News beliau: https://news.ycombinator.com/item?id=45463199 .
 
 script:
 
@@ -452,6 +452,7 @@ sh scripts/load_tests_osrm.sh
 [![k6 Load Test Report osrm alternatives](docs/images/k6_osrm_alternative_routes.png)](docs/images/k6_osrm_alternative_routes.png)
 
 #### OSRM v26.5.0 (commmit c3dc148) Alternative Routes Success rate
+
 ```
 processed 5000 queries
 success rate: 0.575600

@@ -10,6 +10,8 @@ cd osrm-backend
 
 git checkout c3dc148 
 
+ulimit -n 65536
+
 pip install gdown
 gdown https://drive.google.com/uc?id=1uBoFWUSRka9pqH2dVPKpcystxXmkkSgs --output ./data
 osrm-extract --profile ./profiles/car.lua ./data/diy_solo_semarang.osm.pbf

@@ -9,6 +9,8 @@ pip install gdown
 gdown https://drive.google.com/uc?id=1uBoFWUSRka9pqH2dVPKpcystxXmkkSgs --output ./data
 export GOFLAGS="-buildvcs=false"
 
+ulimit -n 65536
+
 go build -o ./bin/preprocessor ./cmd/preprocessor
 ./bin/preprocessor
 

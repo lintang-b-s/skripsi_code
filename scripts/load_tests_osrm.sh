@@ -27,12 +27,12 @@ go run eval/crp_alt/gen_rand_queries_coords/main.go
 
 echo "------- OSRM Fastest Path Load Tests-------"
 
-K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_sp.js & 
+K6_WEB_DASHBOARD=true k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m eval/osrm/load_tests/k6_sp.js & 
 
 sleep 320
 
 echo "------- Alternative Routes Load Tests-------"
-K6_WEB_DASHBOARD=true k6 run -e VUS=1500 -e DURATION=4m eval/osrm/load_tests/k6_alternatives.js &
+K6_WEB_DASHBOARD=true k6 run -e RPS=2000 -e MAXVUS=200 -e DURATION=4m eval/osrm/load_tests/k6_alternatives.js &
 
 
 sleep 320

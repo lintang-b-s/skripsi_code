@@ -35,8 +35,8 @@ echo "-------CRP Query Runtime--------"
 go run ./eval/crp_alt/random_queries_crp_alt/main.go
 
 echo "-------CRP Query Fastest Path Load Tests-------"
-k6 run -e VUS=1500 -e DURATION=4m --out web-dashboard  eval/crp_alt/load_tests/k6_sp.js &
+k6 run -e RPS=2000 -e MAXVUS=200   -e DURATION=4m --out web-dashboard  eval/crp_alt/load_tests/k6_sp.js &
 
 sleep 310
 echo "-------Alternative Routes Load Tests-------"
-k6 run -e VUS=1000 -e DURATION=4m --out web-dashboard eval/crp_alt/load_tests/k6_alternatives.js
+k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m --out web-dashboard eval/crp_alt/load_tests/k6_alternatives.js

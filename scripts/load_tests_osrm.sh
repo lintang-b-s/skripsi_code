@@ -8,6 +8,8 @@ bash update_submodules.sh
 
 cd osrm-backend
 
+git checkout c3dc148 
+
 pip install gdown
 gdown https://drive.google.com/uc?id=1uBoFWUSRka9pqH2dVPKpcystxXmkkSgs --output ./data
 osrm-extract --profile ./profiles/car.lua ./data/diy_solo_semarang.osm.pbf
@@ -27,12 +29,12 @@ go run eval/crp_alt/gen_rand_queries_coords/main.go
 
 echo "------- OSRM Fastest Path Load Tests-------"
 
-K6_WEB_DASHBOARD=true k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m eval/osrm/load_tests/k6_sp.js & 
+k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m --out web-dashboard  eval/osrm/load_tests/k6_sp.js & 
 
 sleep 320
 
 echo "------- Alternative Routes Load Tests-------"
-K6_WEB_DASHBOARD=true k6 run -e RPS=2000 -e MAXVUS=200 -e DURATION=4m eval/osrm/load_tests/k6_alternatives.js &
+k6 run -e RPS=2000 -e MAXVUS=200 -e DURATION=4m --out web-dashboard  eval/osrm/load_tests/k6_alternatives.js &
 
 
 sleep 320

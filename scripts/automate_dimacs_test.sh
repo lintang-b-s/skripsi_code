@@ -79,12 +79,14 @@ CHK_FILE="$ROOT_DIR/DIMACS_9_USA_$MAP_NAME.ss.chk"
     -input_nodes "$INPUT_DIR/$CO_FILE" \
     -input_edges "$INPUT_DIR/$GR_FILE" \
     -input_queries "$SS_FILE" \
-    -output_name "$CHK_FILE"
+    -output_name "$CHK_FILE" \
+    -problem_name "DIMACS_9_P2P_$MAP_NAME" \
+    -us "8,11,14,17,18"
 
 # 4. Run Benchmark Solver (sqC.exe)
 echo "--- Running Benchmark Solver (sqC.exe) ---"
 cd "$SOLVER_DIR"
-RES_FILE="my_results.ss.res"
+RES_FILE="$MAP_NAME.ss.res"
 # Remove old result file if exists
 rm -f "$RES_FILE"
 

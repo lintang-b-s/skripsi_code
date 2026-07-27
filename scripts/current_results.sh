@@ -79,12 +79,14 @@ echo "Dimacs 9th shortest path correctness test completed...."
 
 echo "Running other shortest path correctness test using programming contest problems......"
 
-cd "./Navigatorx/tests/shortestpath_crp_alt" && go test -run TestCRPQueryDelftDistance -v -timeout=0 -count=1
+cd "./Navigatorx/tests/shortestpath_crp_alt_without_turn_cost" && go test -run TestCRPQueryDelftDistance -v -timeout=0 -count=1
 go test -run TestCRPQueryGalaxyQuest -v -timeout=0 -count=1
 go test -run TestCRPQueryShoppingMalls -v -timeout=0 -count=1
 go test -run TestShowroom -v -timeout=0 -count=1
 go test -run TestCRPQuerySimpleGraph -v -timeout=0 -count=1
+go test -run TestCRPQueryAJourneyToGreeceMALT  -v -timeout=0  -count=1
 go test -run TestOSN2024KRLMALT  -v -timeout=0  -count=1
+
 
 
 echo "Running other shortest path correctness test by comparing the result (with no turn costs) with the result of plain dijkstra algorithm"

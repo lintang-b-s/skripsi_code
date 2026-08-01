@@ -27,7 +27,7 @@ cd "$ROOT_DIR/Navigatorx"
 pip install gdown
 gdown https://drive.google.com/uc?id=1tisOgMVXeh7x1WhFvOnZJ-TVHfH7aQ4y --output ./data
 
-go run eval/crp_alt/gen_rand_queries_coords/main.go
+go run eval/crp_alt/gen_rand_queries_coords/main.go --region=jateng_jabar
 
 echo "------- OSRM Fastest Path Load Tests-------"
 

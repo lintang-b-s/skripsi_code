@@ -405,6 +405,8 @@ ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt_without_tur
 completed shortest path correctness test......
 ```
 
+- lihat [eval.md](https://github.com/lintang-b-s/skripsi_code/blob/main/eval.md) untuk lebih lengkapnya
+
 ## Evaluasi Alternative Routes in Road Network [[2]](#ref2)
 
 Evaluasi implementasi Algoritma untuk mencari Alternative Routes in Road Network [[2]](#ref2) yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/alternative_routes.go).
@@ -460,14 +462,34 @@ RAM 16GB
 ### Avg Runtime CRP Query
 
 ```
-2026-05-07T16:54:07.241898894+07:00	info	done query 9000
-2026-05-07T16:54:08.604881903+07:00	info	done query 10000
-avg query times: 1.020100 ms
-avg efficiency: 0.688671
-avg number of vertices scanned: 1142
-avg query runtime: 0.618300 ms
-avg path unpacking runtime: 0.085400 ms
-avg number of overlay vertices scanned: 410
+2026-07-28T13:38:15.278630034+07:00     info    done query 10000
+Algoritma kueri kombinasi CRP dan ALT (with turn costs) : 
+avg query times: 1.722400
+avg efficiency: 0.654847
+avg number of vertices scanned: 1276
+avg query runtime: 1.107700
+avg path unpacking runtime: 0.121000
+2026-07-28T13:38:40.427370774+07:00     info    done query 10000
+Algoritma kueri CRP (with turn costs): 
+avg query times: 2.019900
+avg efficiency: 0.458069
+avg number of vertices scanned: 1803
+avg query runtime: 1.667400
+avg path unpacking runtime: 0.014500
+2026-07-28T13:39:04.576176788+07:00     info    done query 10000
+Algoritma kueri kombinasi CRP dan ALT (without turn costs): 
+avg query times: 1.918100
+avg efficiency: 0.926367
+avg number of vertices scanned: 913
+avg query runtime: 1.715500
+avg path unpacking runtime: 0.008000
+2026-07-28T13:39:41.442439592+07:00     info    done query 10000
+Algoritma kueri CRP (without turn costs): 
+avg query times: 3.189700
+avg efficiency: 0.600642
+avg number of vertices scanned: 1420
+avg query runtime: 2.977300
+avg path unpacking runtime: 0.005000
 ```
 
 ### Fastest Path CRP Query Load Test
@@ -489,6 +511,14 @@ script:
 sh scripts/load_tests_osrm.sh
 
 # buka http://localhost:5665/ui saat k6 load test sudah jalan
+```
+
+```
+[2026-08-01T01:32:33.071203815] [info] Level 1 #cells 15094 #boundary nodes 308259, sources: avg. 13, destinations: avg. 19, entries: 4986173 (39889384 bytes)
+[2026-08-01T01:32:33.076498588] [info] Level 2 #cells 4541 #boundary nodes 133416, sources: avg. 19, destinations: avg. 28, entries: 3041982 (24335856 bytes)
+[2026-08-01T01:32:33.077907989] [info] Level 3 #cells 570 #boundary nodes 30997, sources: avg. 36, destinations: avg. 51, entries: 1248931 (9991448 bytes)
+[2026-08-01T01:32:33.078245030] [info] Level 4 #cells 73 #boundary nodes 6975, sources: avg. 63, destinations: avg. 88, entries: 485091 (3880728 bytes)
+[2026-08-01T01:32:33.078453084] [info] Level 5 #cells 35 #boundary nodes 4292, sources: avg. 81, destinations: avg. 113, entries: 388330 (3106640 bytes
 ```
 
 #### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=false

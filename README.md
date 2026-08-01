@@ -166,42 +166,44 @@ Dimacs 9th shortest path correctness test completed....
 PASS
 ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt_without_turn_cost  36.644s
 
-
-=== RUN   TestCRPQueryGalaxyQuestMALT
- galaxyquest2_test.go:235: calculating shortest paths from planet 1 to other planets.....
-    galaxyquest2_test.go:321: solved test case: ../shortestpath/data/tests/shortestpath/icpc_nwerc2023_galaxyquest/secret/48-random-small-coords
---- PASS: TestCRPQueryGalaxyQuestMALT (6.70s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/sample/1 (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/sample/2 (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/01-cancellation (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/02-min (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/26-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/27-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/28-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/29-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/30-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/31-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/32-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/33-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/34-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/35-random-small (0.00s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/41-random (4.88s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/43-random (1.14s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/46-random-small-coords (0.36s)
-    --- PASS: TestCRPQueryGalaxyQuestMALT/secret/48-random-small-coords (0.28s)
+--- PASS: TestCRPQueryGalaxyQuestMALT (137.09s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsample/1 (0.01s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsample/2 (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/01-cancellation (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/02-min (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/26-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/27-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/28-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/29-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/30-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/31-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/32-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/33-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/34-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/35-random-small (0.00s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/41-random (7.66s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/43-random (0.78s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/44-random (4.09s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/45-random (121.30s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/46-random-small-coords (0.70s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/47-random-small-coords (0.65s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/48-random-small-coords (0.57s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/49-random-small-coords (0.64s)
+    --- PASS: TestCRPQueryGalaxyQuestMALT/Multilevel-ALT_without_turn_costsecret/50-random-small-coords (0.64s)
 PASS
-ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt    6.961s
+ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt_without_turn_cost  137.140s
 
-
---- PASS: TestCRPQueryShoppingMallsMALT (0.48s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/1 (0.00s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/2 (0.07s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/3 (0.08s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/4 (0.14s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/5 (0.11s)
-    --- PASS: TestCRPQueryShoppingMallsMALT/secret/6 (0.07s)
+=== RUN   TestCRPQueryShoppingMallsMALT
+--- PASS: TestCRPQueryShoppingMallsMALT (0.51s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/1 (0.00s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/2 (0.08s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/3 (0.07s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/4 (0.12s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/5 (0.13s)
+    --- PASS: TestCRPQueryShoppingMallsMALT/Multilevel-ALT_without_turn_costsecret/6 (0.10s)
 PASS
 ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt    0.791s
+
 
     showroom_test.go:249: solved test case: ../shortestpath/data/tests/shortestpath/ukiepc2016_showroom/sample/2
 --- PASS: TestShowroomMALT (135.77s)

@@ -1,4 +1,4 @@
-f ../../inputs/USA-road-t/USA-road-t.NY.gr ../../inputs/USA-road-t/USA-road-t.NY.ss
+f ../../inputs/USA-road-t/USA-road-t.NY.gr ../../../results/USA-road-t.NY.ss
 d 124416308119
 d 166517133290
 d 152442617273

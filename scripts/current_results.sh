@@ -8,7 +8,7 @@ pip install gdown
 # hasil saat ini untuk map CAL (California https://www.diag.uniroma1.it/~challenge9/download.shtml) 
 # untuk p2p query (implementasi Cusotmizable Route Planning (CRP) Query pada Navigatorx) dari 50 sources ke all other vertices 
 # list of map names to check (manual entry)
-MAP_NAMES=("CAL")
+MAP_NAMES=("CAL" "NY")
 
 ROOT_DIR=$(pwd)
 RESULTS_DIR="$ROOT_DIR/results"
@@ -27,6 +27,10 @@ fi
 
 gdown https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR --output "$RESULTS_DIR"
 gdown https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz --output "$RESULTS_DIR"
+
+gdown https://drive.google.com/uc?id=1rNzc3PhlDzJWoU2cwPx2fdcbnQRUM64T --output "$RESULTS_DIR"
+gdown https://drive.google.com/uc?id=1TpyNi6bzlGwjcFIIRXzRnOelRN_iAfHQ --output "$RESULTS_DIR"
+
 
 for MAP_NAME in "${MAP_NAMES[@]}"; do
     GR_FILE="$INPUT_DIR/USA-road-t.$MAP_NAME.gr"

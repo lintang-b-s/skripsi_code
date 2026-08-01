@@ -45,7 +45,7 @@ for MAP_NAME in "${MAP_NAMES[@]}"; do
     fi
     SS_FILE="$RESULTS_DIR/USA-road-t.$MAP_NAME.ss"
     CHK_FILE="$RESULTS_DIR/DIMACS_9_USA_$MAP_NAME.ss.chk"
-    RES_FILE="my_results.ss.res"
+    RES_FILE="$MAP_NAME.ss.res"
 
     echo "=== Running Benchmark Solver for $MAP_NAME ==="
     

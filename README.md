@@ -536,7 +536,7 @@ sh scripts/load_tests_osrm.sh
 [2026-08-01T01:32:33.076498588] [info] Level 2 #cells 4541 #boundary nodes 133416, sources: avg. 19, destinations: avg. 28, entries: 3041982 (24335856 bytes)
 [2026-08-01T01:32:33.077907989] [info] Level 3 #cells 570 #boundary nodes 30997, sources: avg. 36, destinations: avg. 51, entries: 1248931 (9991448 bytes)
 [2026-08-01T01:32:33.078245030] [info] Level 4 #cells 73 #boundary nodes 6975, sources: avg. 63, destinations: avg. 88, entries: 485091 (3880728 bytes)
-[2026-08-01T01:32:33.078453084] [info] Level 5 #cells 35 #boundary nodes 4292, sources: avg. 81, destinations: avg. 113, entries: 388330 (3106640 bytes
+[2026-08-01T01:32:33.078453084] [info] Level 5 #cells 35 #boundary nodes 4292, sources: avg. 81, destinations: avg. 113, entries: 388330 (3106640 bytes)
 ```
 
 #### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=false

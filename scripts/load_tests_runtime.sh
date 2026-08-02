@@ -17,8 +17,8 @@ go build -o ./bin/preprocessor ./cmd/preprocessor
 go build -o ./bin/customizer ./cmd/customizer
 ./bin/customizer  --region=jateng_jabar
 
-go build -o ./bin/generator ./cmd/generator
-./bin/generator --region=jateng_jabar
+# go build -o ./bin/generator ./cmd/generator
+# ./bin/generator --region=jateng_jabar
 
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go  --region=jateng_jabar
 go run ./eval/crp_alt/gen_rand_queries/main.go  --region=jateng_jabar

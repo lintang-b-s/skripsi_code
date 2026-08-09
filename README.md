@@ -520,7 +520,7 @@ avg travel time: 197.127807
 min travel time: 1.215000
 max travel time: 494.824333
 
-Algoritma kueri ALT untuk P2PSP (without turn costs):
+Algoritma ALT untuk P2PSP (without turn costs):
 avg query times: 220.603100
 avg efficiency: 0.003338
 avg number of vertices explored: 743975
@@ -529,7 +529,7 @@ avg travel time: 192.582530
 min travel time: 1.707500
 max travel time: 460.150167
 
-Algoritma kueri Dijkstra untuk P2PSP (without turn costs):
+Algoritma Dijkstra untuk P2PSP (without turn costs):
 avg query times: 468.423900
 avg efficiency: 0.001088
 avg number of vertices explored: 1423822

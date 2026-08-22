@@ -4,9 +4,9 @@ set -e
 sh ./update_submodules.sh
 
 cd Navigatorx
+pip install gdown
 gdown https://drive.google.com/uc?id=1HBswl5-JkFXWh--AFLC2ElYC4Tbsj1i0 --output ./data
 sh scripts/build_pgo.sh
-pip install gdown
 gdown https://drive.google.com/uc?id=1tisOgMVXeh7x1WhFvOnZJ-TVHfH7aQ4y --output ./data
 export GOFLAGS="-buildvcs=false"
 

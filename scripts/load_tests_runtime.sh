@@ -4,6 +4,7 @@ set -e
 sh ./update_submodules.sh
 
 cd Navigatorx
+gdown https://drive.google.com/uc?id=1HBswl5-JkFXWh--AFLC2ElYC4Tbsj1i0 --output ./data
 sh scripts/build_pgo.sh
 pip install gdown
 gdown https://drive.google.com/uc?id=1tisOgMVXeh7x1WhFvOnZJ-TVHfH7aQ4y --output ./data
@@ -42,4 +43,8 @@ k6 run -e RPS=2000 -e MAXVUS=200   -e DURATION=4m --out web-dashboard  eval/crp_
 sleep 310
 echo "-------Alternative Routes Load Tests-------"
 k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m --out web-dashboard eval/crp_alt/load_tests/k6_alternatives.js
+
+
+
+
 

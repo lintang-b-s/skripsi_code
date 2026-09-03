@@ -594,6 +594,11 @@ mobile app: https://github.com/lintang-b-s/navigatorx-rn
 frontend web online: https://navigatorx-crp-fe.vercel.app/ \
 [![Navigatorx Demo3](https://img.youtube.com/vi/MblDGyEF7fk/maxresdefault.jpg)](https://www.youtube.com/watch?v=MblDGyEF7fk)
 
+## Skripsi PDF Link
+
+[skripsi_link](https://drive.google.com/file/d/18yas93d04BPUVygg-IEFzjlfEa9odh7o/view?usp=sharing) <br>
+pdf password: `<my-github-username>-<my-birth-year>-<my gdrive email without @gmail.com>`
+
 ## Referensi & Acknowledgements
 
 ### Referensi
@@ -614,7 +619,7 @@ ACM, pp. 156 - 165.
 
 ### Acknowledgements
 
-Penulis ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek open source dibawah ini. Kode pada project Navigatorx banyak diadaptasi dan terinspirasi dari proyek open source berikut:
+Saya ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek open source dibawah ini. Kode pada project Navigatorx banyak diadaptasi dan terinspirasi dari proyek open source berikut:
 
 1. [CRP](https://github.com/michaelwegner/CRP)
 2. [OSRM Backend](https://github.com/Project-OSRM/osrm-backend)

@@ -596,7 +596,7 @@ frontend web online: https://navigatorx-crp-fe.vercel.app/ \
 
 ## Skripsi PDF Link
 
-[skripsi_link](https://drive.google.com/file/d/1h1lOqIDbMmHMOr7IavuGDjNDFBA9ipjs/view?usp=sharing) <br>
+[skripsi_link](https://drive.google.com/file/d/1_ujZWhrrXSvCSA2U0m-85jPGejAVacJG/view?usp=sharing) <br>
 pdf password: `<my-github-username>-<my-birth-year>-<my gdrive email without @gmail.com>`
 
 ## Referensi & Acknowledgements
@@ -625,3 +625,7 @@ Saya ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek op
 2. [OSRM Backend](https://github.com/Project-OSRM/osrm-backend)
 3. [GraphHopper](https://github.com/graphhopper/graphhopper)
 4. [Telenav](https://github.com/Telenav/open-source-spec)
+
+
+
+

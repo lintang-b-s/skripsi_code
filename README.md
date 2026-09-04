@@ -596,7 +596,7 @@ frontend web online: https://navigatorx-crp-fe.vercel.app/ \
 
 ## Skripsi PDF Link
 
-[skripsi_link](https://drive.google.com/file/d/1_ujZWhrrXSvCSA2U0m-85jPGejAVacJG/view?usp=sharing) <br>
+[skripsi_link](https://drive.google.com/file/d/1Ek7xLIsl5Kv-CSR6RdlRNYuA5iFIJaDl/view?usp=sharing) <br>
 pdf password: `<my-github-username>-<my-birth-year>-<my gdrive email without @gmail.com>`
 
 ## Referensi & Acknowledgements

@@ -594,9 +594,9 @@ mobile app: https://github.com/lintang-b-s/navigatorx-rn
 frontend web online: https://navigatorx-crp-fe.vercel.app/ \
 [![Navigatorx Demo3](https://img.youtube.com/vi/MblDGyEF7fk/maxresdefault.jpg)](https://www.youtube.com/watch?v=MblDGyEF7fk)
 
-## Skripsi PDF Link
+## Skripsi
 
-[skripsi_link](https://drive.google.com/file/d/16X4_D82-dBz5CEKTLBWPb8DtG52eVMl5/view?usp=sharing) <br>
+[skripsi_link](https://drive.google.com/file/d/1C9I3X5p3nPhoujk-Gz1f2PZt9QdJBwaA/view?usp=sharing) <br>
 pdf password: `<my-github-username>-<my-birth-year>-<my gdrive email without @gmail.com>`
 
 ## Referensi & Acknowledgements

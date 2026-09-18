@@ -619,9 +619,9 @@ ACM, pp. 156 - 165.
 
 <a id="ref4"></a>4. Luxen, D. and Vetter, C. (2011) ‘Real-time routing with OpenStreetMap data’, in Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems. New York, NY, USA: ACM (GIS ’11), pp. 513–516. Available at: https://doi.org/10.1145/2093973.2094062. code: https://github.com/Project-OSRM/osrm-backend.
 
-<a id="ref5"></a>Sommer, C. (2014). Shortest-path queries in static networks. In ACM Computing Surveys, No. 4, Volume 46, pages 1-31.
+<a id="ref5"></a>5.Sommer, C. (2014). Shortest-path queries in static networks. In ACM Computing Surveys, No. 4, Volume 46, pages 1-31.
 
-<a id="ref6"></a>Schild, A. and Sommer, C. (2015) ‘On Balanced Separators in Road Networks’, in E. Bampis (ed.) Experimental Algorithms. Cham: Springer International Publishing, pp. 286–297.
+<a id="ref6"></a>6. Schild, A. and Sommer, C. (2015) ‘On Balanced Separators in Road Networks’, in E. Bampis (ed.) Experimental Algorithms. Cham: Springer International Publishing, pp. 286–297.
 
 ### Acknowledgements
 

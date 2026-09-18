@@ -423,7 +423,11 @@ ok      github.com/lintang-b-s/Navigatorx/tests/shortestpath_crp_alt_without_tur
 completed shortest path correctness test......
 ```
 
+<br>
+
 - lihat [eval.md](https://github.com/lintang-b-s/skripsi_code/blob/main/eval.md) untuk lebih lengkapnya
+
+- Anda juga dapat menambahkan correctness test sendiri dengan mengikuti kode pemanggilan API untuk preprocessing, customization, dan query dari teknik CRP [[1]](#ref1) seperti pada kode test [ini](https://github.com/lintang-b-s/Navigatorx/blob/main/tests/shortestpath_crp_alt_without_turn_cost/delftdistance_test.go). Graf untuk correctnness test harus planar atau mendekati planar (dengan jumlah crossing edges yang sangat sedikit), hal ini karena teknik percepatan point-to-point shortest path berbasis partisi graf seperti teknik CRP [[1]](#ref1) hanya berkerja dengan baik pada graf planar atau mendekati graf planar seperti road network. Hal ini juga karena baiknya kinerja algoritma kueri dan kustomisasi dari teknik CRP bergantung pada kecilnya jumlah cut edges (atau edge separator) dari graf. Untuk penjelasan lebih jelasnya mengenai ini, baca bab 3.1 & 3.2 pada referensi [[5]](#ref5) dan bab 3.2 pada referensi [[6]](#ref6). Pastikan juga setiap vertex punya koordinat (bisa dibikin mirip spt road network), hal ini dikarenakan cara kerja algoritma partisi graf Inertial Flow [[6]](#ref6) yang butuh sort vertices by its coordinate.
 
 ## Evaluasi Alternative Routes in Road Network [[2]](#ref2)
 
@@ -550,7 +554,7 @@ max travel time: 485.620833
 ### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 
 Saya juga melakukan load test pada software Open Source Routing Machine (OSRM) v26.5.0 [[4]](#ref4) Multilevel-Dijkstra (MLD) pipeline (commit c3dc148). \
-alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1). Seperti yang dikatakan oleh lead developer dari [OSRM](https://github.com/Project-OSRM/osrm-backend) sendiri, Dennis Luxen, pada komen akun Hacker News beliau: https://news.ycombinator.com/item?id=45463199  dan diskusi berikut https://github.com/Project-OSRM/osrm-backend/issues/4797.
+alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipeline ini sangat mirip dengan Customizable Route Planning (CRP) [[1]](#ref1). Seperti yang dikatakan oleh lead developer dari [OSRM](https://github.com/Project-OSRM/osrm-backend) sendiri, Dennis Luxen, pada komen akun Hacker News beliau: https://news.ycombinator.com/item?id=45463199 dan diskusi berikut https://github.com/Project-OSRM/osrm-backend/issues/4797.
 
 script:
 
@@ -603,11 +607,9 @@ pdf password: `<my-github-username>-<my-birth-year>-<my gdrive email without @gm
 
 ### Referensi
 
-<a id="ref1"></a>1. Delling, D. et al. (2015) “Customizable Route Planning in Road
-Networks,” Transportation Science [Preprint]. Available at:
-https://doi.org/10.1287/trsc.2014.0579 .
+<a id="ref1"></a>1. Delling, D., Goldberg, A. V., Pajor, T., dan Werneck, R. F. (2015). Customizable Route Planning in Road Networks. Transportation Science, No. 2, Volume 51, pages 566-591.
 
-<a id="ref2"></a>2. Abraham, I. et al. (2010) “Alternative Routes in Road Networks,” in P. Festa (ed.)
+<a id="ref2"></a>2. Abraham, I., Delling, D., Goldberg, A. V., Werneck R. F. (2010) “Alternative Routes in Road Networks,” in P. Festa (ed.)
 Experimental Algorithms. Berlin, Heidelberg: Springer, pp. 23–34. Available at:
 https://doi.org/10.1007/978-3-642-13193-6_3 .
 
@@ -617,6 +619,10 @@ ACM, pp. 156 - 165.
 
 <a id="ref4"></a>4. Luxen, D. and Vetter, C. (2011) ‘Real-time routing with OpenStreetMap data’, in Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems. New York, NY, USA: ACM (GIS ’11), pp. 513–516. Available at: https://doi.org/10.1145/2093973.2094062. code: https://github.com/Project-OSRM/osrm-backend.
 
+<a id="ref5"></a>Sommer, C. (2014). Shortest-path queries in static networks. In ACM Computing Surveys, No. 4, Volume 46, pages 1-31.
+
+<a id="ref6"></a>Schild, A. and Sommer, C. (2015) ‘On Balanced Separators in Road Networks’, in E. Bampis (ed.) Experimental Algorithms. Cham: Springer International Publishing, pp. 286–297.
+
 ### Acknowledgements
 
 Saya ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek open source dibawah ini. Kode pada project Navigatorx banyak diadaptasi dan terinspirasi dari proyek open source berikut:
@@ -625,7 +631,3 @@ Saya ingin mengucapkan terima kasih sebesar-besaarnya pada kontributor proyek op
 2. [OSRM Backend](https://github.com/Project-OSRM/osrm-backend)
 3. [GraphHopper](https://github.com/graphhopper/graphhopper)
 4. [Telenav](https://github.com/Telenav/open-source-spec)
-
-
-
-

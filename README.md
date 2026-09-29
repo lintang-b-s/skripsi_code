@@ -30,7 +30,7 @@ sh scripts/automate_dimacs_test.sh -m CAL -n 1
 ##### Correctness Test dari Implementasi Customizable Route Planning (CRP) [[1]](#ref1)
 
 map CAL (california) ~1.8jt vertices. \
-ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/multilevel_astar_landmarks_without_turn_cost.go). \
+ini cek correctness dari implementasi Customizable Route Planning [[1]](#ref1) Query Phase yang ada di Navigatorx (https://github.com/lintang-b-s/Navigatorx/blob/main/pkg/engine/routing/multilevel_astar_landmarks.go). \
 bandingin output dari sssp solver nya DIMACS 9th (dari 50 sources ke all other vertices): ./dimacs-ch9-1.1/solvers/mlb-dimacs/sqC.exe . \
 dengan p2p CRP [[1]](#ref1) Query nya Navigatorx (~97 jt query) yang sudah saya jalankan.. ( https://drive.google.com/uc?id=10gsLu7J7EiT1C1s831UOkFGTC9ukh6lR dan https://drive.google.com/uc?id=100LjlJ1imz7hYJbP6hMO5ZvO79FTgNzz )
 dan bandingin output test cases programming contest problems:

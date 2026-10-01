@@ -13,7 +13,7 @@ export GOFLAGS="-buildvcs=false"
 ulimit -n 65536
 
 go build -o ./bin/preprocessor ./cmd/preprocessor
-./bin/preprocessor  --osm_file=./data/jateng_jabar.osm.pbf --mlp_file=./data/jateng_jabar.mlp --region=jateng_jabar  --us=8,11,14,17,18
+./bin/preprocessor  --osm_file=./data/jateng_jabar.osm.pbf --region=jateng_jabar  --us=8,11,14,17,18
 
 go build -o ./bin/customizer ./cmd/customizer
 ./bin/customizer  --region=jateng_jabar

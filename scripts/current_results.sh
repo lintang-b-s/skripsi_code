@@ -37,8 +37,11 @@ for MAP_NAME in "${MAP_NAMES[@]}"; do
     CO_FILE="$COORD_DIR/USA-road-d.$MAP_NAME.co"
 
     if [ ! -f "$GR_FILE" ]; then
-        echo "Graph file $GR_FILE not found. Downloading..."
-        wget -N "https://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR"
+        echo "Graph file $GR_FILE not found. Downloading..." #
+        # todo: data map dimacs 9th impl. challenge gak disimpen di wayback machine :( (https://web.archive.org/web/20260606105100/https://www.diag.uniroma1.it/~challenge9/download.shtml)
+        # yang map NY masih ada di lokal, tapi yg CAL kehapus :( . cari link lain yang ada map DIMACS CAL
+        # todo2: update link map DIMACS NY pake link gdrive
+        wget -N "https://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR" 
         gunzip "$INPUT_DIR/USA-road-t.$MAP_NAME.gr.gz"
     fi
 

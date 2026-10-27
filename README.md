@@ -4,10 +4,10 @@
 
 ### Dimacs 9th Implementation Challenge: Shortest Path
 
-https://www.diag.uniroma1.it/~challenge9/ \
-map data: https://www.diag.uniroma1.it/~challenge9/download.shtml \
-file format: https://www.diag.uniroma1.it/~challenge9/format.shtml#ss.chk \
-dimacs scripts untuk correctnes/performance test (sudah saya clone di ./dimacs-ch9-1.1): https://www.diag.uniroma1.it/~challenge9/code/ch9-1.1.tar.gz
+https://www.diag.uniroma1.it/~challenge9/ (https://web.archive.org/web/20261008122304/http://www.diag.uniroma1.it/~challenge9/ , per tanggal 27 oktober website 9th dimacs implementation cahllenge sudah gak bisa diakses :( )) \
+map data: https://www.diag.uniroma1.it/~challenge9/download.shtml (https://web.archive.org/web/20260915114527/http://www.diag.uniroma1.it/~challenge9/download.shtml) \
+file format: https://www.diag.uniroma1.it/~challenge9/format.shtml#ss.chk (https://web.archive.org/web/20261006011802/http://www.diag.uniroma1.it/~challenge9/format.shtml#ss.chk) \
+dimacs scripts untuk correctnes/performance test (sudah saya clone di ./dimacs-ch9-1.1): https://www.diag.uniroma1.it/~challenge9/code/ch9-1.1.tar.gz (https://web.archive.org/web/20251111005635/http://www.diag.uniroma1.it/~challenge9/code/ch9-1.1.tar.gz)
 
 ```
 sh scripts/automate_dimacs_test.sh -m <MAP_NAME> -n <NUMBER_OF_SOURCES>

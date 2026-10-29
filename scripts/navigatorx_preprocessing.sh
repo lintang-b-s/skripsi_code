@@ -15,7 +15,7 @@ ulimit -n 65536
 
 # --- preprocesssing ----
 go build -o ./bin/preprocessor ./cmd/preprocessor
-./bin/preprocessor  --osm_file=./data/jateng_jabar.osm.pbf --region=jateng_jabar  --us=8,11,14,17,20
+./bin/preprocessor  --osm_file=./data/jateng_jabar.osm.pbf --region=jateng_jabar  --us=8,12,14,16,20 
 go build -o ./bin/customizer ./cmd/customizer
 ./bin/customizer  --region=jateng_jabar
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go  --region=jateng_jabar

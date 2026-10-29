@@ -43,14 +43,14 @@ for MAP_NAME in "${MAP_NAMES[@]}"; do
         # todo2: update link map DIMACS NY pake link gdrive
         # DONE :) masih ada di waybackmachine ternyata
         rm -f "$INPUT_DIR/USA-road-t.$MAP_NAME.gr.gz"
-        wget -N "https://web.archive.org/web/0id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR" 
+        wget -N "https://web.archive.org/web/2024id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR" 
         gunzip "$INPUT_DIR/USA-road-t.$MAP_NAME.gr.gz"
     fi
 
     if [ ! -f "$CO_FILE" ]; then
         echo "Coordinate file $CO_FILE not found. Downloading..."
         rm -f "$COORD_DIR/USA-road-d.$MAP_NAME.co.gz"
-        wget -N "https://web.archive.org/web/0id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-d/USA-road-d.$MAP_NAME.co.gz" -P "$COORD_DIR"
+        wget -N "https://web.archive.org/web/2024id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-d/USA-road-d.$MAP_NAME.co.gz" -P "$COORD_DIR"
         gunzip "$COORD_DIR/USA-road-d.$MAP_NAME.co.gz"
     fi
     SS_FILE="$RESULTS_DIR/USA-road-t.$MAP_NAME.ss"

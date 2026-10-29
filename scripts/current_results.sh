@@ -41,14 +41,14 @@ for MAP_NAME in "${MAP_NAMES[@]}"; do
         # todo: data map dimacs 9th impl. challenge gak disimpen di wayback machine :( (https://web.archive.org/web/20260606105100/https://www.diag.uniroma1.it/~challenge9/download.shtml)
         # yang map NY masih ada di lokal, tapi yg CAL kehapus :( . cari link lain yang ada map DIMACS CAL
         # todo2: update link map DIMACS NY pake link gdrive
-        # DONE :) masih ada di waybackmachine 2024 ternyata
-        wget -N "https://web.archive.org/web/20240122164051/http://www.diag.uniroma1.it/challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR" 
+        # DONE :) masih ada di waybackmachine ternyata
+        wget -N "https://web.archive.org/web/https://www.diag.uniroma1.it/~challenge9/data/USA-road-t/USA-road-t.$MAP_NAME.gr.gz" -P "$INPUT_DIR" 
         gunzip "$INPUT_DIR/USA-road-t.$MAP_NAME.gr.gz"
     fi
 
     if [ ! -f "$CO_FILE" ]; then
         echo "Coordinate file $CO_FILE not found. Downloading..."
-        wget -N "https://web.archive.org/web/20240122164051/http://www.diag.uniroma1.it/challenge9/data/USA-road-d/USA-road-d.$MAP_NAME.co.gz" -P "$COORD_DIR"
+        wget -N "https://web.archive.org/web/https://www.diag.uniroma1.it/~challenge9/data/USA-road-d/USA-road-d.$MAP_NAME.co.gz" -P "$COORD_DIR"
         gunzip "$COORD_DIR/USA-road-d.$MAP_NAME.co.gz"
     fi
     SS_FILE="$RESULTS_DIR/USA-road-t.$MAP_NAME.ss"

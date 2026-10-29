@@ -545,11 +545,11 @@ max travel time: 485.620833
 
 ### Fastest Path CRP Query Load Test
 
-[![k6 Load Test Report navigatorx fastest](docs/images/k6_crp_query_result.png)](docs/images/k6_crp_query_result.png)
+[![k6 Load Test Report navigatorx fastest](docs/images/k6_sp_jateng_jabar_oct_26.png)](docs/images/k6_sp_jateng_jabar_oct_26.png)
 
 ### Alternative Routes in Road Network Load Test
 
-[![k6 Load Test Report navigatorx alternatives](docs/images/k6_alternative_routes_result.png)](docs/images/k6_alternative_routes_result.png)
+[![k6 Load Test Report navigatorx alternatives](docs/images/k6_alt_jateng_jabar_oct_26.png)](docs/images/k6_alt_jateng_jabar_oct_26.png)
 
 ### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 

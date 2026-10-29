@@ -455,9 +455,16 @@ prequisite: install golang: https://go.dev/doc/install
 install k6: https://grafana.com/docs/k6/latest/set-up/install-k6/
 
 ```
-sh ./scripts/load_tests_runtime.sh
+sh ./scripts/navigatorx_preprocessing.sh
 
+# ensure before running load tests run the preprocessing phase first
+sh ./scripts/load_test_navigatorx_k6.sh
 # buka http://localhost:5665/ui saat k6 load test sudah jalan
+
+
+sh ./scripts/load_test_navigatorx_wrk.sh
+
+
 ```
 
 ### Laptop Spec
@@ -486,7 +493,7 @@ RAM 16GB
 ```
 Algoritma kueri kombinasi CRP dan ALT (with turn costs) :
 avg query times: 1.743100
-avg efficiency: 0.508859
+avg efficiency: 0.508859  // efficiency metric section 9 in: https://www.cs.princeton.edu/courses/archive/spr06/cos423/Handouts/GH05.pdf
 avg number of vertices explored: 1339
 avg query runtime: 1.228300
 avg path unpacking runtime: 0.080100
@@ -543,13 +550,154 @@ min travel time: 0.282833
 max travel time: 485.620833
 ```
 
-### Fastest Path CRP Query Load Test
+- updated result 29 oktober 2026:
 
-[![k6 Load Test Report navigatorx fastest](docs/images/k6_sp_jateng_jabar_oct_26.png)](docs/images/k6_sp_jateng_jabar_oct_26.png)
+```
+go run eval/crp_alt/random_queries_crp_alt/main.go
+
+2026-10-29T21:43:36.13332396+07:00	info	Starting query engine....
+2026-10-29T21:43:36.13335552+07:00	info	Reading graph....
+2026-10-29T21:43:37.36532706+07:00	info	   Reading overlay graph....
+2026-10-29T21:43:37.465106938+07:00	info	   Reading metrics...
+2026-10-29T21:43:40.134692344+07:00	info	   starting benchmark
+2026-10-29T21:43:41.551963037+07:00	info	   done query 1000
+2026-10-29T21:43:42.539560145+07:00	info	done query 2000
+2026-10-29T21:43:43.373979094+07:00	info	done query 3000
+2026-10-29T21:43:44.144313904+07:00	info	done query 4000
+2026-10-29T21:43:44.924922167+07:00	info	done query 5000
+2026-10-29T21:43:45.674815076+07:00	info	done query 6000
+2026-10-29T21:43:46.414302847+07:00	info	done query 7000
+2026-10-29T21:43:47.101388819+07:00	info	done query 8000
+2026-10-29T21:43:47.814849579+07:00	info	done query 9000
+2026-10-29T21:43:48.515263441+07:00	info	done query 10000
+Algoritma kueri kombinasi CRP dan ALT (with turn costs) :
+avg query times: 0.288500 ms
+avg number of vertices explored: 720
+avg query runtime: 0.093200 ms
+avg path unpacking runtime: 0.051500 ms
+avg travel time: 195.665246 minutes
+min travel time: 0.000000 minutes
+max travel time: 534.470833 minutes
+2026-10-29T21:43:50.06238444+07:00	info	done query 1000
+2026-10-29T21:43:51.666802196+07:00	info	done query 2000
+2026-10-29T21:43:53.228763781+07:00	info	done query 3000
+2026-10-29T21:43:54.809897186+07:00	info	done query 4000
+2026-10-29T21:43:56.389334655+07:00	info	done query 5000
+2026-10-29T21:43:57.986173961+07:00	info	done query 6000
+2026-10-29T21:43:59.57382158+07:00	info	done query 7000
+2026-10-29T21:44:01.107754644+07:00	info	done query 8000
+2026-10-29T21:44:02.682043454+07:00	info	done query 9000
+2026-10-29T21:44:04.235977603+07:00	info	done query 10000
+Algoritma kueri CRP (with turn costs):
+avg query times: 1.078500 ms
+avg number of vertices explored: 2127
+avg query runtime: 1.001200 ms
+avg path unpacking runtime: 0.003800 ms
+avg travel time: 193.179382 minutes
+min travel time: 1.512667 minutes
+max travel time: 554.503167 minutes
+```
+
+### Fastest Path CRP Query Phase Load Test
+
+- k6:
+  [![k6 Load Test Report navigatorx fastest](docs/images/k6_sp_jateng_jabar_oct_26.png)](docs/images/k6_sp_jateng_jabar_oct_26.png)
+
+- wrk:
+- peak memory dari navigatorx saat di load test menggunakan wrk sekitar ~9.6GB (29 oktober 2026). saat idle tanpa load/request hanya sekitar 2.7 GB untuk input jateng_jabar.osm.pbf.
+- bisa saja di kemudian hari berubah karena saya sedang mencari cara untuk mengurangi alokasi memori dari API nya...
+
+```
+➜  navigatorx-crp git:(main) ✗ MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_sp.lua http://localhost:6060
+Running 4m test @ http://localhost:6060
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    69.86ms   88.50ms   2.00s    89.78%
+    Req/Sec     0.96k   322.53     4.02k    82.11%
+  Latency Distribution
+     50%   46.93ms
+     75%   94.02ms
+     90%  159.99ms
+     99%  367.92ms
+  954853 requests in 4.00m, 22.59GB read
+  Socket errors: connect 0, read 0, write 0, timeout 250
+  Non-2xx or 3xx responses: 1
+Requests/sec:   3976.89
+Transfer/sec:     96.33MB
+
+==========================================
+       Navigatorx Load Test Summary
+==========================================
+Duration:         240.10s
+Total Requests:   954853
+Total Bytes:      23128.14 MB
+Avg Requests/sec: 3976.89
+------------------------------------------
+Latency Percentiles:
+  50th (p50):        46.93 ms
+  75th (p75):        94.02 ms
+  90th (p90):       159.99 ms
+  95th (p95):       213.29 ms
+  99th (p99):       367.92 ms
+  Max:             1999.53 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           0
+  Write:          0
+  Timeout:        250
+==========================================
+➜  navigatorx-crp git:(main) ✗
+```
 
 ### Alternative Routes in Road Network Load Test
 
+-k6:
 [![k6 Load Test Report navigatorx alternatives](docs/images/k6_alt_jateng_jabar_oct_26.png)](docs/images/k6_alt_jateng_jabar_oct_26.png)
+
+wrk:
+
+```
+✗ MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_alternatives.lua http://localhost:6060
+Running 4m test @ http://localhost:6060
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   195.69ms  177.10ms   1.98s    71.97%
+    Req/Sec   299.62    119.65     1.18k    74.77%
+  Latency Distribution
+     50%  165.52ms
+     75%  279.21ms
+     90%  425.65ms
+     99%  790.66ms
+  296813 requests in 4.00m, 10.28GB read
+  Socket errors: connect 0, read 0, write 0, timeout 128
+  Non-2xx or 3xx responses: 1
+Requests/sec:   1236.23
+Transfer/sec:     43.85MB
+
+==========================================
+  Navigatorx Alternative Routes Summary
+==========================================
+Duration:         240.10s
+Total Requests:   296813
+Total Bytes:      10529.36 MB
+Avg Requests/sec: 1236.23
+------------------------------------------
+Latency Percentiles:
+  50th (p50):       165.52 ms
+  75th (p75):       279.21 ms
+  90th (p90):       425.65 ms
+  95th (p95):       536.40 ms
+  99th (p99):       790.65 ms
+  Max:             1980.80 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           0
+  Write:          0
+  Timeout:        128
+==========================================
+```
 
 ### Perbandingan dengan OSRM v26.5.0 [[4]](#ref4) Multilevel-dijkstra (MLD) pipeline
 
@@ -559,9 +707,15 @@ alasan saya menggunakan pipeline Multilevel-Dijkstra (MLD) adalah karena pipelin
 script:
 
 ```
-sh scripts/load_tests_osrm.sh
+sh scripts/osrm_preprocessing.sh
+
+# ensure before running load tests run the preprocessing phase first
+sh scripts/load_test_osrm_k6.sh
 
 # buka http://localhost:5665/ui saat k6 load test sudah jalan
+sh scripts/load_test_osrm_wrk.sh
+
+
 ```
 
 ```
@@ -574,11 +728,99 @@ sh scripts/load_tests_osrm.sh
 
 #### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=false
 
-[![k6 Load Test Report osrm fastest](docs/images/k6_osrm_fastest.png)](docs/images/k6_osrm_fastest.png)
+- k6:
+  [![k6 Load Test Report osrm fastest](docs/images/k6_osrm_fastest.png)](docs/images/k6_osrm_fastest.png)
+
+- wrk:
+
+```
+MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/osrm/load_tests/wrk_sp.lua http://localhost:5000
+Running 4m test @ http://localhost:5000
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   291.94ms   62.44ms   1.97s    91.11%
+    Req/Sec   171.09     56.48     0.90k    87.91%
+  Latency Distribution
+     50%  299.04ms
+     75%  314.96ms
+     90%  330.49ms
+     99%  362.28ms
+  169932 requests in 4.00m, 24.94GB read
+  Socket errors: connect 0, read 200, write 0, timeout 85
+Requests/sec:    707.81
+Transfer/sec:    106.37MB
+
+==========================================
+         OSRM Load Test Summary
+==========================================
+Duration:         240.08s
+Total Requests:   169932
+Total Bytes:      25537.68 MB
+Avg Requests/sec: 707.81
+------------------------------------------
+Latency Percentiles:
+  50th (p50):       299.04 ms
+  75th (p75):       314.96 ms
+  90th (p90):       330.49 ms
+  95th (p95):       340.20 ms
+  99th (p99):       362.28 ms
+  Max:             1972.82 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           200
+  Write:          0
+  Timeout:        85
+==========================================
+➜  navigatorx-crp git:(main) ✗
+```
 
 #### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=true
 
-[![k6 Load Test Report osrm alternatives](docs/images/k6_osrm_alternative_routes.png)](docs/images/k6_osrm_alternative_routes.png)
+- k6
+  [![k6 Load Test Report osrm alternatives](docs/images/k6_osrm_alternative_routes.png)](docs/images/k6_osrm_alternative_routes.png)
+
+- wrk:
+
+```
+MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/osrm/load_tests/wrk_alternatives.lua http://localhost:5000
+Running 4m test @ http://localhost:5000
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   531.39ms   94.19ms   1.96s    88.65%
+    Req/Sec    93.76     40.69   494.00     77.68%
+  Latency Distribution
+     50%  547.47ms
+     75%  575.07ms
+     90%  600.75ms
+     99%  658.47ms
+  92169 requests in 4.00m, 27.27GB read
+  Socket errors: connect 0, read 48, write 0, timeout 118
+Requests/sec:    383.89
+Transfer/sec:    116.32MB
+
+==========================================
+    OSRM Alternative Routes Summary
+==========================================
+Duration:         240.09s
+Total Requests:   92169
+Total Bytes:      27927.00 MB
+Avg Requests/sec: 383.89
+------------------------------------------
+Latency Percentiles:
+  50th (p50):       547.47 ms
+  75th (p75):       575.07 ms
+  90th (p90):       600.75 ms
+  95th (p95):       617.20 ms
+  99th (p99):       658.47 ms
+  Max:             1955.03 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           48
+  Write:          0
+  Timeout:        118
+```
 
 #### OSRM v26.5.0 (commmit c3dc148) Alternative Routes Success rate
 

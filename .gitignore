@@ -16,3 +16,5 @@ error.txt
 
 Navigatorx/tests/benchmark/data/yogyakarta.osm.pbf
 .vscode/
+*.osrm*
+

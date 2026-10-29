@@ -6,6 +6,7 @@
 	path = osrm-backend
 	url = https://github.com/Project-OSRM/osrm-backend
     branch = master
+	ignore = untracked
 [submodule "navigatorx-crp-fe"]
 	path = navigatorx-crp-fe
 	url = git@github.com:lintang-b-s/navigatorx-crp-fe.git

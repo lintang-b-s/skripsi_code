@@ -453,6 +453,7 @@ sh ./scripts/alternative_routes_results.sh
 script:
 prequisite: install golang: https://go.dev/doc/install
 install k6: https://grafana.com/docs/k6/latest/set-up/install-k6/
+install wrk: https://github.com/wg/wrk
 
 ```
 sh ./scripts/navigatorx_preprocessing.sh
@@ -652,10 +653,10 @@ Socket Errors:
 
 ### Alternative Routes in Road Network Load Test
 
--k6:
-[![k6 Load Test Report navigatorx alternatives](docs/images/k6_alt_jateng_jabar_oct_26.png)](docs/images/k6_alt_jateng_jabar_oct_26.png)
+- k6:
+  [![k6 Load Test Report navigatorx alternatives](docs/images/k6_alt_jateng_jabar_oct_26.png)](docs/images/k6_alt_jateng_jabar_oct_26.png)
 
-wrk:
+- wrk:
 
 ```
 ✗ MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_alternatives.lua http://localhost:6060

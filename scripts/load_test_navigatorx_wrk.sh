@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 cd Navigatorx
+ulimit -n 65536
 ./bin/engine --region=jateng_jabar &
 ENGINE_PID=$!
 trap "kill $ENGINE_PID" EXIT

@@ -49,13 +49,15 @@ CO_FILE="USA-road-d.$MAP_NAME.co"
 
 if [ ! -f "$INPUT_DIR/$GR_FILE" ]; then
     echo "Downloading $GR_FILE.gz..."
-    wget -c "https://web.archive.org/web/https://www.diag.uniroma1.it/~challenge9/data/USA-road-t/$GR_FILE.gz" -O "$INPUT_DIR/$GR_FILE.gz"
+    rm -f "$INPUT_DIR/$GR_FILE.gz"
+    wget -c "https://web.archive.org/web/0id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-t/$GR_FILE.gz" -O "$INPUT_DIR/$GR_FILE.gz"
     gunzip "$INPUT_DIR/$GR_FILE.gz"
 fi
 
 if [ ! -f "$INPUT_DIR/$CO_FILE" ]; then
     echo "Downloading $CO_FILE.gz..."
-    wget -c "https://web.archive.org/web/https://www.diag.uniroma1.it/~challenge9/data/USA-road-d/$CO_FILE.gz" -O "$INPUT_DIR/$CO_FILE.gz"
+    rm -f "$INPUT_DIR/$CO_FILE.gz"
+    wget -c "https://web.archive.org/web/0id_/http://www.diag.uniroma1.it/~challenge9/data/USA-road-d/$CO_FILE.gz" -O "$INPUT_DIR/$CO_FILE.gz"
     gunzip "$INPUT_DIR/$CO_FILE.gz"
 fi
 

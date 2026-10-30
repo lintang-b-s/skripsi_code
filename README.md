@@ -462,9 +462,11 @@ sh ./scripts/navigatorx_preprocessing.sh
 sh ./scripts/load_test_navigatorx_k6.sh
 # buka http://localhost:5665/ui saat k6 load test sudah jalan
 
-
+# wrk load test
 sh ./scripts/load_test_navigatorx_wrk.sh
 
+# avg query runtime
+sh scripts/navigatorx_query_runtime.sh
 
 ```
 

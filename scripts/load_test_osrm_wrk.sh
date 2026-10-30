@@ -10,5 +10,6 @@ trap 'kill "$OSRM_PID" 2>/dev/null || true' EXIT
 sleep 3
 
 MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s ../Navigatorx/eval/osrm/load_tests/wrk_sp.lua http://localhost:5000
+sleep 5 
 MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s ../Navigatorx/eval/osrm/load_tests/wrk_alternatives.lua http://localhost:5000
 

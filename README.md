@@ -656,7 +656,7 @@ Socket Errors:
 ➜  navigatorx-crp git:(main) ✗
 ```
 
-- wrk without driving directions:
+- wrk without driving directions (useSteps=false):
 
 ```
    Latency    56.27ms   68.09ms   1.96s    89.07%

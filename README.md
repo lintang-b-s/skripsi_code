@@ -490,6 +490,11 @@ Vendor ID:                   AuthenticAMD
     CPU max MHz:             4979.3340
     CPU min MHz:             406.4770
     BogoMIPS:                6388.24
+ Caches (sum of all):
+  L1d:                       192 KiB (6 instances)
+  L1i:                       192 KiB (6 instances)
+  L2:                        6 MiB (6 instances)
+  L3:                        16 MiB (1 instance)
 
 RAM 16GB
 ```

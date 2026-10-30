@@ -20,7 +20,7 @@ go build -o ./bin/customizer ./cmd/customizer
 ./bin/customizer  --region=jateng_jabar
 go run ./eval/crp_alt/gen_rand_queries_coords/main.go  --region=jateng_jabar
 go run ./eval/crp_alt/gen_rand_queries/main.go  --region=jateng_jabar
-go build -o ./bin/engine -pgo=auto  ./cmd/engine
+go build -o ./bin/engine -pgo=./bin/default.pgo   ./cmd/engine
 
 
 

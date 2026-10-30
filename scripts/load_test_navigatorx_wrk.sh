@@ -10,7 +10,7 @@ echo "waiting the server to initialize..."
 sleep 15
 
 MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_sp.lua http://localhost:6060
-sleep 5 
+sleep 15
 MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_alternatives.lua http://localhost:6060
-
+sleep 10
 

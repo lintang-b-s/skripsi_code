@@ -468,6 +468,9 @@ sh ./scripts/load_test_navigatorx_wrk.sh
 # avg query runtime
 sh scripts/navigatorx_query_runtime.sh
 
+# wrk load test without driving directions
+sh scripts/load_test_navigatorx_wrk_without_steps.sh
+
 ```
 
 ### Laptop Spec
@@ -653,6 +656,46 @@ Socket Errors:
 ➜  navigatorx-crp git:(main) ✗
 ```
 
+- wrk without driving directions:
+
+```
+   Latency    56.27ms   68.09ms   1.96s    89.07%
+    Req/Sec     1.18k   383.67     4.56k    79.82%
+  Latency Distribution
+     50%   40.10ms
+     75%   78.13ms
+     90%  129.24ms
+     99%  265.35ms
+  1170286 requests in 4.00m, 15.24GB read
+  Socket errors: connect 0, read 0, write 0, timeout 76
+Requests/sec:   4875.08
+Transfer/sec:     65.01MB
+
+==========================================
+       Navigatorx Load Test Summary
+==========================================
+Duration:         240.05s
+Total Requests:   1170286
+Total Bytes:      15604.95 MB
+Avg Requests/sec: 4875.08
+------------------------------------------
+Latency Percentiles:
+  Avg:               56.27 ms
+  50th (p50):        40.10 ms
+  75th (p75):        78.13 ms
+  90th (p90):       129.24 ms
+  95th (p95):       167.09 ms
+  99th (p99):       265.35 ms
+  Max:             1962.21 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           0
+  Write:          0
+  Timeout:        76
+==========================================
+```
+
 ### Alternative Routes in Road Network Load Test
 
 - k6:
@@ -776,6 +819,45 @@ Socket Errors:
   Timeout:        85
 ==========================================
 ➜  navigatorx-crp git:(main) ✗
+```
+
+- wrk osrm without driving directions (steps=false):
+
+```
+    Latency    68.53ms   21.73ms   1.47s    95.03%
+    Req/Sec   737.35    163.55     2.83k    95.50%
+  Latency Distribution
+     50%   68.23ms
+     75%   71.19ms
+     90%   77.35ms
+     99%   89.72ms
+  730029 requests in 4.00m, 655.43MB read
+  Socket errors: connect 0, read 1300, write 0, timeout 0
+Requests/sec:   3040.62
+Transfer/sec:      2.73MB
+
+==========================================
+         OSRM Load Test Summary
+==========================================
+Duration:         240.09s
+Total Requests:   730029
+Total Bytes:      655.43 MB
+Avg Requests/sec: 3040.62
+------------------------------------------
+  Avg:               68.53 ms
+  50th (p50):        68.23 ms
+  75th (p75):        71.19 ms
+  90th (p90):        77.34 ms
+  95th (p95):        82.11 ms
+  99th (p99):        89.72 ms
+  Max:             1472.98 ms
+------------------------------------------
+Socket Errors:
+  Connect:        0
+  Read:           1300
+  Write:          0
+  Timeout:        0
+==========================================
 ```
 
 #### OSRM v26.5.0 (commit c3dc148) computeRoutes (/route/v1/driving) with alternatives=true

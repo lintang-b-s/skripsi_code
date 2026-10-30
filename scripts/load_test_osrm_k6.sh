@@ -14,8 +14,8 @@ sleep 3
 cd "$ROOT_DIR/Navigatorx"
 echo "------- OSRM Fastest Path Load Tests-------"
 k6 run -e RPS=2000 -e MAXVUS=200  -e DURATION=4m --out web-dashboard  eval/osrm/load_tests/k6_sp.js 
-sleep 5
+sleep 15
 echo "------- Alternative Routes Load Tests-------"
 k6 run -e RPS=2000 -e MAXVUS=200 -e DURATION=4m --out web-dashboard  eval/osrm/load_tests/k6_alternatives.js 
-
+sleep 10
 

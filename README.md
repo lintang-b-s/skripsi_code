@@ -614,85 +614,101 @@ max travel time: 554.503167 minutes
 - bisa saja di kemudian hari berubah karena saya sedang mencari cara untuk mengurangi alokasi memori dari API nya...
 
 ```
-➜  navigatorx-crp git:(main) ✗ MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_sp.lua http://localhost:6060
+ MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_sp.lua http://localhost:6060
 Running 4m test @ http://localhost:6060
   4 threads and 200 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    69.86ms   88.50ms   2.00s    89.78%
-    Req/Sec     0.96k   322.53     4.02k    82.11%
+    Latency    68.14ms   79.35ms   2.00s    88.52%
+    Req/Sec     0.97k   324.06     3.91k    81.12%
   Latency Distribution
-     50%   46.93ms
-     75%   94.02ms
-     90%  159.99ms
-     99%  367.92ms
-  954853 requests in 4.00m, 22.59GB read
-  Socket errors: connect 0, read 0, write 0, timeout 250
-  Non-2xx or 3xx responses: 1
-Requests/sec:   3976.89
-Transfer/sec:     96.33MB
+     50%   47.32ms
+     75%   94.20ms
+     90%  156.74ms
+     99%  342.55ms
+  964099 requests in 4.00m, 22.82GB read
+  Socket errors: connect 0, read 0, write 0, timeout 139
+  Non-2xx or 3xx responses: 2
+Requests/sec:   4015.28
+Transfer/sec:     97.32MB
 
 ==========================================
        Navigatorx Load Test Summary
 ==========================================
-Duration:         240.10s
-Total Requests:   954853
-Total Bytes:      23128.14 MB
-Avg Requests/sec: 3976.89
+Duration:         240.11s
+Total Requests:   964099
+Total Bytes:      23366.26 MB
+Avg Requests/sec: 4015.28
+------------------------------------------
+Content-Length (Payload Size):
+  Avg:            25265.78 bytes (24.67 KB)
+  Min:                 122 bytes
+  Max:              109141 bytes (106.58 KB)
 ------------------------------------------
 Latency Percentiles:
-  50th (p50):        46.93 ms
-  75th (p75):        94.02 ms
-  90th (p90):       159.99 ms
-  95th (p95):       213.29 ms
-  99th (p99):       367.92 ms
-  Max:             1999.53 ms
+  Avg:               68.14 ms
+  50th (p50):        47.32 ms
+  75th (p75):        94.20 ms
+  90th (p90):       156.75 ms
+  95th (p95):       206.31 ms
+  99th (p99):       342.55 ms
+  Max:             1999.34 ms
 ------------------------------------------
 Socket Errors:
   Connect:        0
   Read:           0
   Write:          0
-  Timeout:        250
+  Timeout:        139
 ==========================================
-➜  navigatorx-crp git:(main) ✗
 ```
 
 - wrk without driving directions (useSteps=false):
 
 ```
-   Latency    56.27ms   68.09ms   1.96s    89.07%
-    Req/Sec     1.18k   383.67     4.56k    79.82%
+MAX_QUERIES=0  wrk -t4 -c200 -d4m --latency -s eval/crp_alt/load_tests/wrk_sp_without_steps.lua http://localhost:6060
+
+Running 4m test @ http://localhost:6060
+  4 threads and 200 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    49.84ms   52.99ms   1.97s    86.89%
+    Req/Sec     1.30k   428.17     5.41k    82.31%
   Latency Distribution
-     50%   40.10ms
-     75%   78.13ms
-     90%  129.24ms
-     99%  265.35ms
-  1170286 requests in 4.00m, 15.24GB read
-  Socket errors: connect 0, read 0, write 0, timeout 76
-Requests/sec:   4875.08
-Transfer/sec:     65.01MB
+     50%   35.85ms
+     75%   70.43ms
+     90%  116.14ms
+     99%  234.34ms
+  1289824 requests in 4.00m, 16.77GB read
+  Socket errors: connect 0, read 0, write 0, timeout 36
+  Non-2xx or 3xx responses: 1
+Requests/sec:   5372.23
+Transfer/sec:     71.53MB
 
 ==========================================
        Navigatorx Load Test Summary
 ==========================================
-Duration:         240.05s
-Total Requests:   1170286
-Total Bytes:      15604.95 MB
-Avg Requests/sec: 4875.08
+Duration:         240.09s
+Total Requests:   1289824
+Total Bytes:      17173.24 MB
+Avg Requests/sec: 5372.23
+------------------------------------------
+Content-Length (Payload Size):
+  Avg:            13813.53 bytes (13.49 KB)
+  Min:                 122 bytes
+  Max:               54049 bytes (52.78 KB)
 ------------------------------------------
 Latency Percentiles:
-  Avg:               56.27 ms
-  50th (p50):        40.10 ms
-  75th (p75):        78.13 ms
-  90th (p90):       129.24 ms
-  95th (p95):       167.09 ms
-  99th (p99):       265.35 ms
-  Max:             1962.21 ms
+  Avg:               49.84 ms
+  50th (p50):        35.85 ms
+  75th (p75):        70.43 ms
+  90th (p90):       116.14 ms
+  95th (p95):       150.30 ms
+  99th (p99):       234.34 ms
+  Max:             1970.27 ms
 ------------------------------------------
 Socket Errors:
   Connect:        0
   Read:           0
   Write:          0
-  Timeout:        76
+  Timeout:        36
 ==========================================
 ```
 
